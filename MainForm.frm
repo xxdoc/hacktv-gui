@@ -3225,8 +3225,9 @@ End Sub
 
 Private Function CheckTXGain() As Boolean
     CheckTXGain = True
-    If txgain.Text = "" Then CheckTXGain = False
-    If txgain.Text > 47 Then CheckTXGain = False
+    If Not IsNumeric(txgain.Text) Then CheckTXGain = False
+    If Not CheckTXGain = False Then If txgain.Text = "" Then CheckTXGain = False
+    If Not CheckTXGain = False Then If txgain.Text > 47 Then CheckTXGain = False
     If CheckTXGain = False Then
         MsgBox "Gain should be between 0 and 47 dB.", vbExclamation, App.Title
     End If
