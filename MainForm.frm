@@ -3478,6 +3478,7 @@ Private Sub RunTV()
     If CheckCardNumber = False Then Exit Sub
 
 ' Combine all parameters into one text field
+' This doesn't include the filename as we will be trimming later
     allargs.Text = videomodeargument & Chr(32) & sys & Chr(32) & frequencyargument & Chr(32) _
     & freq & Chr(32) & samplerateargument & Chr(32) & sr & Chr(32) & txgainargument & Chr(32) _
     & txgain.Text & Chr(32) & nicamstatus & Chr(32) & audiostatus & Chr(32) & acpstatus & Chr(32) _
@@ -3487,12 +3488,14 @@ Private Sub RunTV()
     & gammavalue.Text & Chr(32) & outputlevelparam & Chr(32) & outputlevelvalue.Text & Chr(32) _
     & filterparam & Chr(32) & positionparam & Chr(32) & positionValue.Text & Chr(32) & timestampParam _
     & Chr(32) & logoParam & Chr(32) & logoPath & Chr(32) & verboseParam & Chr(32) & EMMParam & Chr(32) _
-    & TruncatedCardNumber & Chr(32) & ShowECMParam & Chr(32) & inputsource
+    & TruncatedCardNumber & Chr(32) & ShowECMParam
 ' Tidy up parameters by removing additional spaces if required
     Do While InStr(1, allargs.Text, "  ")
         allargs.Text = Replace$(allargs.Text, "  ", " ")
     Loop
     SpacesRemoved = Trim(allargs.Text)
+' Add the source path to the arguments field
+    allargs.Text = SpacesRemoved & Chr(32) & inputsource
 ' If running on Wine, call its sub
 ' If running on Windows, check if closeonexit is enabled
 ' If enabled, change the parameters to run cmd.exe /k first. If disabled, then run hacktv.exe directly.
