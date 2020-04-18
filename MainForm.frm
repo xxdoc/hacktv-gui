@@ -1745,14 +1745,12 @@ Private Sub MAC_Click()
     NICAMSupported = False
     Call EnableTeletextButton
     Call EnableWSSButton
-    ' Getting ready for future EuroCrypt support but left disabled
-    ' until we know it's ready (and what syntax it will use)
-    'If forktype = "CJ" Then
-    '    Call EnableEncryption
-    '    Call AddMACEncryptionTypes
-    'Else
+    If forktype = "CJ" Then
+        Call EnableEncryption
+        Call AddMACEncryptionTypes
+    Else
         Call DisableEncryption
-    'End If
+    End If
     ChkACP.Enabled = True
     With VideoFormat
         .Clear
@@ -2871,7 +2869,7 @@ Private Sub AddMACEncryptionTypes()
         .Clear
         .AddItem "No encryption"
         .ItemData(.NewIndex) = "600"
-        .AddItem "EuroCrypt"
+        .AddItem "EuroCrypt M"
         .ItemData(.NewIndex) = "607"
         .ListIndex = "0"
     End With
@@ -3006,8 +3004,16 @@ Private Sub AddECModes()
     encryptiontype = "--eurocrypt"
     With encryption_key
         .Clear
-        .AddItem "Free access"
+        .AddItem "Free access (no card required)"
         .ItemData(.NewIndex) = "671"
+        .AddItem "Conditional access (FilmNet card)"
+        .ItemData(.NewIndex) = "672"
+        .AddItem "Conditional access (TV1000 card)"
+        .ItemData(.NewIndex) = "673"
+        .AddItem "Conditional access (CTV card)"
+        .ItemData(.NewIndex) = "674"
+        .AddItem "Conditional access (TV Plus card)"
+        .ItemData(.NewIndex) = "675"
         .ListIndex = 0
     End With
 End Sub
@@ -3055,6 +3061,11 @@ Private Sub CheckEncryptionKey()
         If encryptionkey = "665" Then encryptionkey = "premiere-fa"
 ' EuroCrypt
         If encryptionkey = "671" Then encryptionkey = "free"
+        If encryptionkey = "672" Then encryptionkey = "filmnet"
+        If encryptionkey = "673" Then encryptionkey = "tv1000"
+        If encryptionkey = "674" Then encryptionkey = "ctv"
+        If encryptionkey = "675" Then encryptionkey = "tvplus"
+        
 ' ACP is not supported when encryption is enabled, so disable the option
         ChkACP.Enabled = False
         ChkACP.Value = vbUnchecked
