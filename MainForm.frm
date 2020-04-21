@@ -2869,8 +2869,10 @@ Private Sub AddMACEncryptionTypes()
         .Clear
         .AddItem "No encryption"
         .ItemData(.NewIndex) = "600"
-        .AddItem "EuroCrypt M"
+        .AddItem "EuroCrypt M (single cut)"
         .ItemData(.NewIndex) = "607"
+        .AddItem "EuroCrypt M (double cut)"
+        .ItemData(.NewIndex) = "608"
         .ListIndex = "0"
     End With
 End Sub
@@ -2890,6 +2892,7 @@ Private Sub CheckEncryptionType()
         If encryptiontype = "605" Then Call AddSysterModes
         If encryptiontype = "606" Then Call AddBothVCModes
         If encryptiontype = "607" Then Call AddECModes
+        If encryptiontype = "608" Then Call AddECModes
     End If
 End Sub
 
@@ -3000,8 +3003,11 @@ Private Sub AddSysterModes()
 End Sub
 
 Private Sub AddECModes()
-' Test code, will not work at present!
-    encryptiontype = "--eurocrypt"
+    If encryptiontype = "607" Then
+        encryptiontype = "--eurocrypt"
+    ElseIf encryptiontype = "608" Then
+        encryptiontype = "--eurocrypt-dc"
+    End If
     With encryption_key
         .Clear
         .AddItem "Free access (no card required)"
