@@ -2869,9 +2869,9 @@ Private Sub AddMACEncryptionTypes()
         .Clear
         .AddItem "No encryption"
         .ItemData(.NewIndex) = "600"
-        .AddItem "EuroCrypt M (single cut)"
+        .AddItem "EuroCrypt (single cut)"
         .ItemData(.NewIndex) = "607"
-        .AddItem "EuroCrypt M (double cut)"
+        .AddItem "EuroCrypt (double cut)"
         .ItemData(.NewIndex) = "608"
         .ListIndex = "0"
     End With
@@ -3012,14 +3012,18 @@ Private Sub AddECModes()
         .Clear
         .AddItem "Free access (no card required)"
         .ItemData(.NewIndex) = "671"
-        .AddItem "Conditional access (FilmNet card)"
+        .AddItem "M - Conditional access (FilmNet card)"
         .ItemData(.NewIndex) = "672"
-        .AddItem "Conditional access (TV1000 card)"
+        .AddItem "M - Conditional access (TV1000 card)"
         .ItemData(.NewIndex) = "673"
-        .AddItem "Conditional access (CTV card)"
+        .AddItem "M - Conditional access (CTV card)"
         .ItemData(.NewIndex) = "674"
-        .AddItem "Conditional access (TV Plus card)"
+        .AddItem "M - Conditional access (TV Plus card)"
         .ItemData(.NewIndex) = "675"
+        .AddItem "S2 - Conditional access (TVS Denmark card)"
+        .ItemData(.NewIndex) = "676"
+        .AddItem "S2 - Conditional access (RDV card)"
+        .ItemData(.NewIndex) = "677"
         .ListIndex = 0
     End With
 End Sub
@@ -3071,6 +3075,8 @@ Private Sub CheckEncryptionKey()
         If encryptionkey = "673" Then encryptionkey = "tv1000"
         If encryptionkey = "674" Then encryptionkey = "ctv"
         If encryptionkey = "675" Then encryptionkey = "tvplus"
+        If encryptionkey = "676" Then encryptionkey = "tvs"
+        If encryptionkey = "677" Then encryptionkey = "rdv"
         
 ' ACP is not supported when encryption is enabled, so disable the option
         ChkACP.Enabled = False
