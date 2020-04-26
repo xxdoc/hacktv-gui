@@ -1358,26 +1358,6 @@ Private Sub OpenFile_Click()
         Call NewFile_Click
         Exit Sub
     End If
-    ' Check if the file erroneously contains -1 as a value.
-    ' This could cause the program to crash so cancel load if we find it.
-    ' Hopefully this isn't needed but it's here as a precaution.
-    Open ConfigFileName For Input As #iFileNo
-    ' Reset linecounter to zero
-    linecounter = 0
-    Do While Not EOF(1)
-        Line Input #iFileNo, fData
-        linecounter = linecounter + 1
-        ' Stop processing if or when we find what we need
-        ' Ignore the source line so we don't accidentally flag a file containing -1
-        If InStr(fData, "-1") > 0 And Not InStr(fData, "source=") > 0 Then Exit Do
-        Loop
-    Close #iFileNo
-    If InStr(fData, "-1") > 0 Then
-        MsgBox "Error in configuration file on line " & linecounter & "." & vbCrLf & "The file cannot be opened.", vbCritical, App.Title
-        FileOpened = True
-        Call NewFile_Click
-        Exit Sub
-    End If
     On Error Resume Next
     ' If the path is not fully qualified, add the current working directory path to it
     If Not Mid(ConfigFileName, 2, 1) = ":" Then ConfigFileName = CurDir & Chr(92) & ConfigFileName
