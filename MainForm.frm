@@ -2,7 +2,7 @@ VERSION 5.00
 Begin VB.Form MainForm 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "GUI frontend for hacktv"
-   ClientHeight    =   6630
+   ClientHeight    =   6855
    ClientLeft      =   1425
    ClientTop       =   1080
    ClientWidth     =   12015
@@ -19,20 +19,82 @@ Begin VB.Form MainForm
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
-   ScaleHeight     =   6630
+   ScaleHeight     =   6855
    ScaleWidth      =   12015
+   Begin VB.Frame FrmTeletext 
+      Caption         =   "Teletext options"
+      Height          =   1215
+      Left            =   6720
+      TabIndex        =   43
+      Top             =   120
+      Width           =   5175
+      Begin VB.PictureBox Picture4 
+         BorderStyle     =   0  'None
+         Height          =   855
+         Left            =   120
+         ScaleHeight     =   855
+         ScaleWidth      =   4995
+         TabIndex        =   44
+         Top             =   240
+         Width           =   5000
+         Begin VB.CommandButton BtnTeletextBrowseFile 
+            Caption         =   "File..."
+            Enabled         =   0   'False
+            Height          =   375
+            Left            =   1680
+            TabIndex        =   68
+            Top             =   480
+            Width           =   1600
+         End
+         Begin VB.CheckBox ChkTeletext 
+            Caption         =   "Teletext"
+            Height          =   255
+            Left            =   0
+            TabIndex        =   45
+            Top             =   120
+            Width           =   975
+         End
+         Begin VB.TextBox teletext_source 
+            BackColor       =   &H8000000F&
+            Enabled         =   0   'False
+            Height          =   285
+            Left            =   1080
+            TabIndex        =   46
+            Top             =   120
+            Width           =   3855
+         End
+         Begin VB.CommandButton BtnTeletextBrowse 
+            Caption         =   "Directory..."
+            Enabled         =   0   'False
+            Height          =   375
+            Left            =   0
+            TabIndex        =   47
+            Top             =   480
+            Width           =   1600
+         End
+         Begin VB.CommandButton BtnTeletextDownload 
+            Caption         =   "Download..."
+            Enabled         =   0   'False
+            Height          =   375
+            Left            =   3360
+            TabIndex        =   48
+            Top             =   480
+            Width           =   1605
+         End
+      End
+   End
    Begin VB.Frame FrmAdvanced 
       Caption         =   "Advanced options"
       Height          =   4215
       Left            =   6720
-      TabIndex        =   46
+      TabIndex        =   49
       Top             =   1440
       Width           =   5175
       Begin VB.CheckBox ChkCloseOnExit 
          Caption         =   "Don't close console window on exit"
          Height          =   315
          Left            =   120
-         TabIndex        =   61
+         TabIndex        =   64
          Top             =   3840
          Width           =   3015
       End
@@ -41,7 +103,7 @@ Begin VB.Form MainForm
          Enabled         =   0   'False
          Height          =   315
          Left            =   120
-         TabIndex        =   59
+         TabIndex        =   62
          Top             =   3120
          Width           =   2055
       End
@@ -49,7 +111,7 @@ Begin VB.Form MainForm
          Caption         =   "Enable verbose output"
          Height          =   315
          Left            =   120
-         TabIndex        =   60
+         TabIndex        =   63
          Top             =   3480
          Width           =   2415
       End
@@ -57,7 +119,7 @@ Begin VB.Form MainForm
          Caption         =   "Widescreen signalling (WSS) on line 23"
          Height          =   315
          Left            =   120
-         TabIndex        =   50
+         TabIndex        =   53
          Top             =   1320
          Width           =   3255
       End
@@ -66,7 +128,7 @@ Begin VB.Form MainForm
          Height          =   315
          Left            =   3600
          Style           =   2  'Dropdown List
-         TabIndex        =   51
+         TabIndex        =   54
          Top             =   1320
          Width           =   1455
       End
@@ -74,7 +136,7 @@ Begin VB.Form MainForm
          Caption         =   "Gamma correction"
          Height          =   315
          Left            =   120
-         TabIndex        =   52
+         TabIndex        =   55
          Top             =   1680
          Width           =   2175
       End
@@ -84,7 +146,7 @@ Begin VB.Form MainForm
          Height          =   285
          Left            =   4320
          MaxLength       =   4
-         TabIndex        =   53
+         TabIndex        =   56
          Top             =   1680
          Width           =   735
       End
@@ -92,7 +154,7 @@ Begin VB.Form MainForm
          Caption         =   "Output level"
          Height          =   315
          Left            =   120
-         TabIndex        =   54
+         TabIndex        =   57
          Top             =   2040
          Width           =   1935
       End
@@ -102,7 +164,7 @@ Begin VB.Form MainForm
          Height          =   285
          Left            =   4320
          MaxLength       =   4
-         TabIndex        =   55
+         TabIndex        =   58
          Top             =   2040
          Width           =   735
       End
@@ -110,7 +172,7 @@ Begin VB.Form MainForm
          Caption         =   "FM deviation (MHz)"
          Height          =   315
          Left            =   120
-         TabIndex        =   56
+         TabIndex        =   59
          Top             =   2400
          Width           =   1935
       End
@@ -120,7 +182,7 @@ Begin VB.Form MainForm
          Height          =   285
          Left            =   4320
          MaxLength       =   5
-         TabIndex        =   57
+         TabIndex        =   60
          Top             =   2400
          Width           =   735
       End
@@ -128,7 +190,7 @@ Begin VB.Form MainForm
          Caption         =   "Macrovision ACP"
          Height          =   315
          Left            =   120
-         TabIndex        =   49
+         TabIndex        =   52
          Top             =   960
          Width           =   1575
       End
@@ -136,7 +198,7 @@ Begin VB.Form MainForm
          Caption         =   "VSB-AM filter"
          Height          =   315
          Left            =   120
-         TabIndex        =   58
+         TabIndex        =   61
          Top             =   2760
          Width           =   3135
       End
@@ -144,7 +206,7 @@ Begin VB.Form MainForm
          Caption         =   "Audio enabled"
          Height          =   315
          Left            =   120
-         TabIndex        =   47
+         TabIndex        =   50
          Top             =   240
          Width           =   1455
       End
@@ -153,7 +215,7 @@ Begin VB.Form MainForm
          Enabled         =   0   'False
          Height          =   315
          Left            =   120
-         TabIndex        =   48
+         TabIndex        =   51
          Top             =   600
          Width           =   1575
       End
@@ -163,77 +225,24 @@ Begin VB.Form MainForm
       Height          =   285
       Left            =   120
       Locked          =   -1  'True
-      TabIndex        =   63
-      Top             =   6240
+      TabIndex        =   66
+      Top             =   6480
       Width           =   11775
    End
    Begin VB.CommandButton BtnRun 
       Caption         =   "Run hacktv..."
       Height          =   375
       Left            =   6720
-      TabIndex        =   62
-      Top             =   5760
+      TabIndex        =   65
+      Top             =   5880
       Width           =   5175
-   End
-   Begin VB.Frame FrmTeletext 
-      Caption         =   "Teletext options"
-      Height          =   1215
-      Left            =   6720
-      TabIndex        =   40
-      Top             =   120
-      Width           =   5175
-      Begin VB.PictureBox Picture4 
-         BorderStyle     =   0  'None
-         Height          =   855
-         Left            =   120
-         ScaleHeight     =   855
-         ScaleWidth      =   4935
-         TabIndex        =   41
-         Top             =   240
-         Width           =   4935
-         Begin VB.CheckBox ChkTeletext 
-            Caption         =   "Teletext"
-            Height          =   255
-            Left            =   0
-            TabIndex        =   42
-            Top             =   120
-            Width           =   975
-         End
-         Begin VB.TextBox teletext_source 
-            BackColor       =   &H8000000F&
-            Enabled         =   0   'False
-            Height          =   285
-            Left            =   1080
-            TabIndex        =   43
-            Top             =   120
-            Width           =   3855
-         End
-         Begin VB.CommandButton BtnTeletextBrowse 
-            Caption         =   "Browse..."
-            Enabled         =   0   'False
-            Height          =   375
-            Left            =   0
-            TabIndex        =   44
-            Top             =   480
-            Width           =   2415
-         End
-         Begin VB.CommandButton BtnTeletextDownload 
-            Caption         =   "Download..."
-            Enabled         =   0   'False
-            Height          =   375
-            Left            =   2520
-            TabIndex        =   45
-            Top             =   480
-            Width           =   2415
-         End
-      End
    End
    Begin VB.Frame FrmFrequency 
       Caption         =   "Frequency and TX options"
       Height          =   1695
       Left            =   120
-      TabIndex        =   28
-      Top             =   4440
+      TabIndex        =   31
+      Top             =   4680
       Width           =   6495
       Begin VB.PictureBox Picture3 
          BorderStyle     =   0  'None
@@ -241,14 +250,14 @@ Begin VB.Form MainForm
          Left            =   120
          ScaleHeight     =   255
          ScaleWidth      =   4095
-         TabIndex        =   29
+         TabIndex        =   32
          Top             =   360
          Width           =   4095
          Begin VB.OptionButton VHF 
             Caption         =   "VHF"
             Height          =   255
             Left            =   1200
-            TabIndex        =   31
+            TabIndex        =   34
             Top             =   0
             Width           =   615
          End
@@ -256,7 +265,7 @@ Begin VB.Form MainForm
             Caption         =   "UHF"
             Height          =   255
             Left            =   0
-            TabIndex        =   30
+            TabIndex        =   33
             Top             =   0
             Width           =   735
          End
@@ -264,7 +273,7 @@ Begin VB.Form MainForm
             Caption         =   "Custom"
             Height          =   255
             Left            =   3000
-            TabIndex        =   32
+            TabIndex        =   35
             Top             =   0
             Width           =   975
          End
@@ -273,7 +282,7 @@ Begin VB.Form MainForm
          Height          =   285
          Left            =   1320
          MaxLength       =   2
-         TabIndex        =   38
+         TabIndex        =   41
          Text            =   "0"
          Top             =   1200
          Width           =   1455
@@ -283,7 +292,7 @@ Begin VB.Form MainForm
          Height          =   285
          Left            =   4680
          MaxLength       =   7
-         TabIndex        =   36
+         TabIndex        =   39
          Top             =   720
          Width           =   1695
       End
@@ -291,7 +300,7 @@ Begin VB.Form MainForm
          Caption         =   "TX RF amplifier"
          Height          =   255
          Left            =   3120
-         TabIndex        =   39
+         TabIndex        =   42
          Top             =   1200
          Width           =   1575
       End
@@ -299,7 +308,7 @@ Begin VB.Form MainForm
          Height          =   315
          Left            =   1320
          Style           =   2  'Dropdown List
-         TabIndex        =   34
+         TabIndex        =   37
          Top             =   720
          Width           =   1455
       End
@@ -307,7 +316,7 @@ Begin VB.Form MainForm
          Caption         =   "TX gain (dB)"
          Height          =   255
          Left            =   120
-         TabIndex        =   37
+         TabIndex        =   40
          Top             =   1200
          Width           =   975
       End
@@ -315,7 +324,7 @@ Begin VB.Form MainForm
          Caption         =   "Frequency (MHz)"
          Height          =   255
          Left            =   3120
-         TabIndex        =   35
+         TabIndex        =   38
          Top             =   720
          Width           =   1335
       End
@@ -323,7 +332,7 @@ Begin VB.Form MainForm
          Caption         =   "Channel"
          Height          =   255
          Left            =   120
-         TabIndex        =   33
+         TabIndex        =   36
          Top             =   720
          Width           =   855
       End
@@ -332,8 +341,8 @@ Begin VB.Form MainForm
       Caption         =   "Video format and encryption options"
       Height          =   2055
       Left            =   120
-      TabIndex        =   12
-      Top             =   2280
+      TabIndex        =   15
+      Top             =   2520
       Width           =   6495
       Begin VB.TextBox CardNumber 
          BackColor       =   &H8000000F&
@@ -341,7 +350,7 @@ Begin VB.Form MainForm
          Height          =   285
          Left            =   5040
          MaxLength       =   13
-         TabIndex        =   27
+         TabIndex        =   30
          Top             =   1680
          Width           =   1335
       End
@@ -350,7 +359,7 @@ Begin VB.Form MainForm
          Enabled         =   0   'False
          Height          =   195
          Left            =   3240
-         TabIndex        =   26
+         TabIndex        =   29
          Top             =   1680
          Width           =   1815
       End
@@ -359,7 +368,7 @@ Begin VB.Form MainForm
          Enabled         =   0   'False
          Height          =   195
          Left            =   1560
-         TabIndex        =   25
+         TabIndex        =   28
          Top             =   1680
          Width           =   1695
       End
@@ -368,7 +377,7 @@ Begin VB.Form MainForm
          Enabled         =   0   'False
          Height          =   195
          Left            =   120
-         TabIndex        =   24
+         TabIndex        =   27
          Top             =   1680
          Width           =   1455
       End
@@ -377,7 +386,7 @@ Begin VB.Form MainForm
          Height          =   315
          Left            =   2040
          Style           =   2  'Dropdown List
-         TabIndex        =   23
+         TabIndex        =   26
          Top             =   1200
          Width           =   4335
       End
@@ -387,14 +396,14 @@ Begin VB.Form MainForm
          Left            =   120
          ScaleHeight     =   255
          ScaleWidth      =   6255
-         TabIndex        =   13
+         TabIndex        =   16
          Top             =   360
          Width           =   6255
          Begin VB.OptionButton BW 
             Caption         =   "Black and white"
             Height          =   195
             Left            =   3840
-            TabIndex        =   17
+            TabIndex        =   20
             Top             =   0
             Width           =   1455
          End
@@ -402,7 +411,7 @@ Begin VB.Form MainForm
             Caption         =   "NTSC"
             Height          =   195
             Left            =   1200
-            TabIndex        =   15
+            TabIndex        =   18
             Top             =   0
             Width           =   855
          End
@@ -410,7 +419,7 @@ Begin VB.Form MainForm
             Caption         =   "PAL"
             Height          =   195
             Left            =   0
-            TabIndex        =   14
+            TabIndex        =   17
             Top             =   0
             Width           =   735
          End
@@ -418,7 +427,7 @@ Begin VB.Form MainForm
             Caption         =   "SECAM"
             Height          =   195
             Left            =   2520
-            TabIndex        =   16
+            TabIndex        =   19
             Top             =   0
             Width           =   855
          End
@@ -426,7 +435,7 @@ Begin VB.Form MainForm
             Caption         =   "MAC"
             Height          =   195
             Left            =   5520
-            TabIndex        =   18
+            TabIndex        =   21
             Top             =   0
             Width           =   735
          End
@@ -435,7 +444,7 @@ Begin VB.Form MainForm
          Height          =   285
          Left            =   5640
          MaxLength       =   6
-         TabIndex        =   21
+         TabIndex        =   24
          Top             =   720
          Width           =   735
       End
@@ -444,7 +453,7 @@ Begin VB.Form MainForm
          Height          =   315
          Left            =   120
          Style           =   2  'Dropdown List
-         TabIndex        =   22
+         TabIndex        =   25
          Top             =   1200
          Width           =   1815
       End
@@ -452,7 +461,7 @@ Begin VB.Form MainForm
          Height          =   315
          Left            =   120
          Style           =   2  'Dropdown List
-         TabIndex        =   19
+         TabIndex        =   22
          Top             =   720
          Width           =   3975
       End
@@ -460,18 +469,37 @@ Begin VB.Form MainForm
          Caption         =   "Sample rate (MHz)"
          Height          =   285
          Left            =   4200
-         TabIndex        =   20
+         TabIndex        =   23
          Top             =   720
-         Width           =   1335
+         Width           =   1455
       End
    End
    Begin VB.Frame FrmSource 
       Caption         =   "Source options"
-      Height          =   2055
+      Height          =   2295
       Left            =   120
       TabIndex        =   0
       Top             =   120
       Width           =   6495
+      Begin VB.TextBox TxtSubtitleIndex 
+         BackColor       =   &H8000000F&
+         Enabled         =   0   'False
+         Height          =   285
+         Left            =   5640
+         MaxLength       =   2
+         TabIndex        =   14
+         Top             =   1920
+         Width           =   735
+      End
+      Begin VB.CheckBox ChkSubtitles 
+         Caption         =   "Subtitles"
+         Enabled         =   0   'False
+         Height          =   255
+         Left            =   120
+         TabIndex        =   12
+         Top             =   1920
+         Width           =   1695
+      End
       Begin VB.CheckBox ChkRepeat 
          Caption         =   "Repeat indefinitely"
          Height          =   315
@@ -541,7 +569,7 @@ Begin VB.Form MainForm
             Height          =   315
             Left            =   0
             Style           =   2  'Dropdown List
-            TabIndex        =   64
+            TabIndex        =   67
             Top             =   360
             Visible         =   0   'False
             Width           =   4695
@@ -560,11 +588,11 @@ Begin VB.Form MainForm
          BackColor       =   &H8000000F&
          Enabled         =   0   'False
          Height          =   285
-         Left            =   5520
+         Left            =   5640
          MaxLength       =   3
          TabIndex        =   8
          Top             =   1200
-         Width           =   855
+         Width           =   735
       End
       Begin VB.CheckBox ChkPosition 
          Caption         =   "Start position (minutes)"
@@ -573,6 +601,15 @@ Begin VB.Form MainForm
          Left            =   2880
          TabIndex        =   7
          Top             =   1200
+         Width           =   2055
+      End
+      Begin VB.Label LblSubtitleIndex 
+         Caption         =   "Subtitle index (optional)"
+         Enabled         =   0   'False
+         Height          =   255
+         Left            =   2880
+         TabIndex        =   13
+         Top             =   1920
          Width           =   2055
       End
    End
@@ -691,6 +728,7 @@ Dim verboseParam As String
 Dim EMMParam As String
 Dim TruncatedCardNumber As String
 Dim ShowECMParam As String
+Dim SubtitlesParam As String
 
 ' Initialise XP-ish window styles
 ' Also initialise a workaround for a bug which causes a VB6 application to crash on exit if
@@ -715,6 +753,14 @@ Private Sub Form_Initialize()
         MsgBox "Another instance of hacktv-gui is already running.", vbCritical, App.Title
         End
     End If
+' Realign text labels to make things look better.
+    LblSubtitleIndex.Top = TxtSubtitleIndex.Top + (TxtSubtitleIndex.Height - LblSubtitleIndex.Height)
+    LblSampleRate.Top = SampleRate.Top + ((SampleRate.Height - LblSampleRate.Height) + 24)
+    LblFrequency.Top = frequency_mhz.Top + (frequency_mhz.Height - LblFrequency.Height)
+    ChkLogo.Top = LogoFolder.Top + ((LogoFolder.Height - ChkLogo.Height) / 2)
+    ChkTimestamp.Top = LogoFolder.Top + ((LogoFolder.Height - ChkLogo.Height) / 2)
+    ChkPosition.Top = positionValue.Top + ((positionValue.Height - ChkPosition.Height) / 2)
+    ChkRepeat.Top = positionValue.Top + ((positionValue.Height - ChkPosition.Height) / 2)
 End Sub
 
 Private Sub Form_Load()
@@ -811,6 +857,8 @@ Private Sub fsphil()
     ChkTimestamp.Value = vbUnchecked
     ChkLogo.Value = vbUnchecked
     ChkLogo.Enabled = False
+    ChkSubtitles.Value = vbUnchecked
+    ChkSubtitles.Enabled = False
     forktype = ""
     Call DisablePosition
     Call AddPALEncryptionTypes
@@ -823,6 +871,7 @@ Private Sub captainjack()
         ChkTimestamp.Enabled = True
         Call EnablePosition
         ChkLogo.Enabled = True
+        ChkSubtitles.Enabled = True
     End If
 ' Set the forktype variable so we know what features to enable or disable later
     forktype = "CJ"
@@ -841,6 +890,21 @@ Private Sub about_Click()
     & vbCrLf & "Created 2019-2020 by Stephen McGarry" & vbCrLf & vbCrLf _
     & "This application has no affiliation with hacktv's developers and is provided for your convenience."
     MsgBox lblDescription, vbInformation, lblTitle
+End Sub
+
+Private Sub ChkSubtitles_Click()
+    If ChkSubtitles.Value = vbChecked Then
+        LblSubtitleIndex.Enabled = True
+        TxtSubtitleIndex.Enabled = True
+        TxtSubtitleIndex.BackColor = vbWindowBackground
+        SubtitlesParam = "--subtitles"
+    Else
+        LblSubtitleIndex.Enabled = False
+        TxtSubtitleIndex.Text = ""
+        TxtSubtitleIndex.Enabled = False
+        TxtSubtitleIndex.BackColor = vbButtonFace
+        SubtitlesParam = ""
+    End If
 End Sub
 
 Private Sub AddWSSModes()
@@ -963,12 +1027,25 @@ Private Sub ChkTimestamp_Click()
 End Sub
 
 ' The following subs ensure that only numeric (or decimal) values can be entered in the specified textboxes
+Private Sub TxtSubtitleIndex_keypress(KeyAscii As Integer)
+    Call CheckInput(KeyAscii)
+End Sub
+
 Private Sub positionValue_keypress(KeyAscii As Integer)
     Call CheckInput(KeyAscii)
 End Sub
 
 Private Sub CardNumber_KeyPress(KeyAscii As Integer)
     Call CheckInput(KeyAscii)
+End Sub
+
+Private Sub BtnTeletextBrowseFile_Click()
+' Opens a file open dialog box to specify the location of teletext files
+    Dim sFile As String
+        If (VBGetOpenFileName(sFile, , True, False, , True, "All teletext files (*.tti, *.t42)|*.tti;*.t42|Teletext page (*.tti)|*.tti|Teletext container (*.t42)|*.t42|All Files (*.*)|*.*", 0, , "Choose File", , Me.hWnd)) Then
+            teletext_source.Text = sFile
+        End If
+    Exit Sub
 End Sub
 
 Private Sub txgain_KeyPress(KeyAscii As Integer)
@@ -1197,6 +1274,13 @@ Private Sub SaveConfigFile(ByVal FileName As String)
     WriteIniValue FileName, "Settings", "nicam", ChkNICAM.Value
     ' Show ECM
     WriteIniValue FileName, "Settings", "showecm", ChkShowECM.Value
+    ' Subtitles
+    WriteIniValue FileName, "Settings", "subtitles", ChkSubtitles.Value
+    If ChkSubtitles.Value = vbChecked Then
+        WriteIniValue FileName, "Settings", "subtitleindex", TxtSubtitleIndex.Text
+    Else
+        WriteIniValue FileName, "Settings", "subtitleindex", ""
+    End If
     ' Close on exit
     WriteIniValue FileName, "Settings", "dontcloseonexit", ChkCloseOnExit.Value
     ' Display the opened filename in the title bar
@@ -1425,6 +1509,9 @@ Private Sub OpenFile_Click()
     ChkNICAM.Value = ReadIniValue(ConfigFileName, "Settings", "nicam")
     ' ECM
     ChkShowECM.Value = ReadIniValue(ConfigFileName, "Settings", "showecm")
+    ' Subtitles
+    ChkSubtitles.Value = ReadIniValue(ConfigFileName, "Settings", "subtitles")
+    If ChkSubtitles.Value = vbChecked Then TxtSubtitleIndex.Text = ReadIniValue(ConfigFileName, "Settings", "subtitleindex")
     ' Close on exit
     ChkCloseOnExit.Value = ReadIniValue(ConfigFileName, "Settings", "dontcloseonexit")
     ' Display the opened filename in the title bar
@@ -1638,6 +1725,7 @@ Private Sub ChkNICAM_Click()
     End If
 End Sub
 
+
 Private Sub VHF_Click()
 ' Populates the frequency_ch combobox with VHF channel frequencies for the selected video format
 ' Also disables the frequency_mhz textbox
@@ -1799,7 +1887,7 @@ Private Sub BtnTeletextBrowse_Click()
 ' Opens a folder browser dialog box to specify the location of teletext files
     Dim sDir As String
     sDir = BrowseForFolder(Me, "Please specify a directory that contains teletext files.", teletext_source.Text)
-        If Not sDir = "" Then teletext_source.Text = sDir
+            teletext_source.Text = sDir
     Exit Sub
 End Sub
 
@@ -1819,6 +1907,7 @@ Private Sub LocalSource_Click()
         Call EnablePosition
         ChkTimestamp.Enabled = True
         ChkLogo.Enabled = True
+        ChkSubtitles.Enabled = True
     End If
 End Sub
 
@@ -1840,6 +1929,8 @@ Private Sub TestCard_Click()
         ChkTimestamp.Enabled = False
         ChkLogo.Value = vbUnchecked
         ChkLogo.Enabled = False
+        ChkSubtitles.Value = vbUnchecked
+        ChkSubtitles.Enabled = False
     End If
     inputsource = "test"
     input_source.Text = ""
@@ -1911,6 +2002,7 @@ Private Sub EnableTeletext()
     teletext_source.Enabled = True
     BtnTeletextBrowse.Enabled = True
     BtnTeletextDownload.Enabled = True
+    BtnTeletextBrowseFile.Enabled = True
     TeletextFlag = "--teletext"
 End Sub
 
@@ -1922,6 +2014,7 @@ Private Sub DisableTeletext()
     teletext_source.Enabled = False
     BtnTeletextBrowse.Enabled = False
     BtnTeletextDownload.Enabled = False
+    BtnTeletextBrowseFile.Enabled = False
     teletext_source.Text = ""
     TeletextFlag = ""
     teletextsource = ""
@@ -3242,6 +3335,12 @@ Private Sub CheckTeletextSource()
             If InStr(teletext_source.Text, Chr(34)) = 0 Then
                 teletextsource = Chr(34) & teletext_source.Text & Chr(34)
             End If
+' Is the file a .t42 teletext archive? If so, add a "raw:" prefix to it.
+' But don't apply the prefix for directories.
+            If LCase(Right$(teletext_source.Text, 4)) = ".t42" Then
+                On Error Resume Next
+                If Not (GetAttr(teletext_source.Text) And vbDirectory) <> 0 Then teletextsource = "raw:" & teletextsource
+            End If
         End If
     End If
 End Sub
@@ -3492,14 +3591,15 @@ Private Sub RunTV()
 ' Combine all parameters into one text field
 ' This doesn't include the filename as we will be trimming later
     allargs.Text = videomodeargument & Chr(32) & sys & Chr(32) & frequencyargument & Chr(32) _
-    & freq & Chr(32) & samplerateargument & Chr(32) & sr & Chr(32) & txgainargument & Chr(32) _
-    & txgain.Text & Chr(32) & nicamstatus & Chr(32) & audiostatus & Chr(32) & acpstatus & Chr(32) _
-    & repeatstatus & Chr(32) & wssstatus & Chr(32) & encryptiontype & Chr(32) & encryptionkey _
-    & Chr(32) & audioencryption & Chr(32) & TeletextFlag & Chr(32) & teletextsource & Chr(32) _
-    & rfAmpFlag & Chr(32) & fmdevargument & Chr(32) & fmdevvalue & Chr(32) & gammaParam & Chr(32) _
-    & gammavalue.Text & Chr(32) & outputlevelparam & Chr(32) & outputlevelvalue.Text & Chr(32) _
-    & filterparam & Chr(32) & positionparam & Chr(32) & positionValue.Text & Chr(32) & timestampParam _
-    & Chr(32) & logoParam & Chr(32) & logoPath & Chr(32) & verboseParam & Chr(32) & EMMParam & Chr(32) _
+    & freq & Chr(32) & samplerateargument & Chr(32) & sr & Chr(32) & SubtitlesParam & Chr(32) _
+    & TxtSubtitleIndex.Text & Chr(32) & txgainargument & Chr(32) & txgain.Text & Chr(32) & nicamstatus _
+    & Chr(32) & audiostatus & Chr(32) & acpstatus & Chr(32) & repeatstatus & Chr(32) & wssstatus _
+    & Chr(32) & encryptiontype & Chr(32) & encryptionkey & Chr(32) & audioencryption & Chr(32) _
+    & TeletextFlag & Chr(32) & teletextsource & Chr(32) & rfAmpFlag & Chr(32) & fmdevargument _
+    & Chr(32) & fmdevvalue & Chr(32) & gammaParam & Chr(32) & gammavalue.Text & Chr(32) _
+    & outputlevelparam & Chr(32) & outputlevelvalue.Text & Chr(32) & filterparam & Chr(32) _
+    & positionparam & Chr(32) & positionValue.Text & Chr(32) & timestampParam & Chr(32) _
+    & logoParam & Chr(32) & logoPath & Chr(32) & verboseParam & Chr(32) & EMMParam & Chr(32) _
     & TruncatedCardNumber & Chr(32) & ShowECMParam
 ' Tidy up parameters by removing additional spaces if required
     Do While InStr(1, allargs.Text, "  ")
