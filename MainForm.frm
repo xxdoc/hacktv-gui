@@ -3165,7 +3165,7 @@ Private Sub CheckEncryptionKey()
 ' Enable EMM options if sky07, sky09 or VC2 conditional is selected
         If encryptionkey = "sky07" Or encryptionkey = "sky09" Then
             Call EnableEMMOptions
-        ElseIf encryptiontype = "--videocrypt2" And encryptionkey = "conditional" Then Call EnableEMMOptions
+        ElseIf encryptiontype = "--videocrypt2" And encryptionkey = "conditional" Then
             Call EnableEMMOptions
         Else
             Call DisableEMMOptions
