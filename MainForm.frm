@@ -355,22 +355,22 @@ Begin VB.Form MainForm
          Width           =   1335
       End
       Begin VB.CheckBox ChkDisableEMM 
-         Caption         =   "Deactivate Sky card"
+         Caption         =   "Deactivate card"
          Enabled         =   0   'False
          Height          =   195
          Left            =   3240
          TabIndex        =   29
          Top             =   1680
-         Width           =   1815
+         Width           =   1575
       End
       Begin VB.CheckBox ChkEnableEMM 
-         Caption         =   "Activate Sky card"
+         Caption         =   "Activate card"
          Enabled         =   0   'False
          Height          =   195
-         Left            =   1560
+         Left            =   1680
          TabIndex        =   28
          Top             =   1680
-         Width           =   1695
+         Width           =   1455
       End
       Begin VB.CheckBox ChkEncryptAudio 
          Caption         =   "Encrypt audio"
@@ -754,13 +754,14 @@ Private Sub Form_Initialize()
         End
     End If
 ' Realign text labels to make things look better.
-    LblSubtitleIndex.Top = TxtSubtitleIndex.Top + (TxtSubtitleIndex.Height - LblSubtitleIndex.Height)
+    LblSubtitleIndex.Top = TxtSubtitleIndex.Top + ((TxtSubtitleIndex.Height - LblSubtitleIndex.Height) + 24)
     LblSampleRate.Top = SampleRate.Top + ((SampleRate.Height - LblSampleRate.Height) + 24)
     LblFrequency.Top = frequency_mhz.Top + (frequency_mhz.Height - LblFrequency.Height)
     ChkLogo.Top = LogoFolder.Top + ((LogoFolder.Height - ChkLogo.Height) / 2)
     ChkTimestamp.Top = LogoFolder.Top + ((LogoFolder.Height - ChkLogo.Height) / 2)
     ChkPosition.Top = positionValue.Top + ((positionValue.Height - ChkPosition.Height) / 2)
     ChkRepeat.Top = positionValue.Top + ((positionValue.Height - ChkPosition.Height) / 2)
+    ChkSubtitles.Top = TxtSubtitleIndex.Top + ((TxtSubtitleIndex.Height - ChkSubtitles.Height))
 End Sub
 
 Private Sub Form_Load()
@@ -1812,7 +1813,10 @@ Private Sub MAC_Click()
     Call DisableNICAM
     NICAMSupported = False
     Call EnableTeletextButton
-    Call EnableWSSButton
+    If ChkWSS.Enabled = False Then
+        Call EnableWSSButton
+        Call AddWSSModes
+    End If
     If forktype = "CJ" Then
         Call EnableEncryption
         Call AddMACEncryptionTypes
@@ -1840,7 +1844,10 @@ Private Sub Common625Features()
     Call EnableNICAM
     NICAMSupported = True
     Call EnableTeletextButton
-    Call EnableWSSButton
+    If ChkWSS.Enabled = False Then
+        Call EnableWSSButton
+        Call AddWSSModes
+    End If
     Call EnableEncryption
 End Sub
 
@@ -1964,6 +1971,7 @@ End Sub
 
 Private Sub EnableWSS()
     wss_mode.Enabled = True
+    Call AddWSSModes
     wss_mode.ListIndex = 0
 End Sub
 
@@ -3154,8 +3162,10 @@ Private Sub CheckEncryptionKey()
 ' ACP is not supported when encryption is enabled, so disable the option
         ChkACP.Enabled = False
         ChkACP.Value = vbUnchecked
-' Enable EMM options if sky07 or sky09 is selected
+' Enable EMM options if sky07, sky09 or VC2 conditional is selected
         If encryptionkey = "sky07" Or encryptionkey = "sky09" Then
+            Call EnableEMMOptions
+        ElseIf encryptiontype = "--videocrypt2" And encryptionkey = "conditional" Then Call EnableEMMOptions
             Call EnableEMMOptions
         Else
             Call DisableEMMOptions
