@@ -3107,6 +3107,8 @@ Private Sub AddECModes()
         .ItemData(.NewIndex) = "677"
         .AddItem "S2 - Conditional access (NRK card)"
         .ItemData(.NewIndex) = "678"
+        .AddItem "S2 - Conditional access (CTV card)"
+        .ItemData(.NewIndex) = "679"
         .ListIndex = 0
     End With
 End Sub
@@ -3161,6 +3163,7 @@ Private Sub CheckEncryptionKey()
         If encryptionkey = "676" Then encryptionkey = "tvs"
         If encryptionkey = "677" Then encryptionkey = "rdv"
         If encryptionkey = "678" Then encryptionkey = "nrk"
+        If encryptionkey = "679" Then encryptionkey = "ctvs"
 ' ACP is not supported when encryption is enabled, so disable the option
         ChkACP.Enabled = False
         ChkACP.Value = vbUnchecked
