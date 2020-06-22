@@ -2,7 +2,7 @@ VERSION 5.00
 Begin VB.Form MainForm 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "GUI frontend for hacktv"
-   ClientHeight    =   6855
+   ClientHeight    =   6885
    ClientLeft      =   1425
    ClientTop       =   1080
    ClientWidth     =   12015
@@ -19,13 +19,13 @@ Begin VB.Form MainForm
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
-   ScaleHeight     =   6855
+   ScaleHeight     =   6885
    ScaleWidth      =   12015
    Begin VB.Frame FrmTeletext 
       Caption         =   "Teletext options"
       Height          =   1215
       Left            =   6720
-      TabIndex        =   43
+      TabIndex        =   46
       Top             =   120
       Width           =   5175
       Begin VB.PictureBox Picture4 
@@ -34,7 +34,7 @@ Begin VB.Form MainForm
          Left            =   120
          ScaleHeight     =   855
          ScaleWidth      =   4995
-         TabIndex        =   44
+         TabIndex        =   47
          Top             =   240
          Width           =   5000
          Begin VB.CommandButton BtnTeletextBrowseFile 
@@ -42,7 +42,7 @@ Begin VB.Form MainForm
             Enabled         =   0   'False
             Height          =   375
             Left            =   1680
-            TabIndex        =   68
+            TabIndex        =   70
             Top             =   480
             Width           =   1600
          End
@@ -50,7 +50,7 @@ Begin VB.Form MainForm
             Caption         =   "Teletext"
             Height          =   255
             Left            =   0
-            TabIndex        =   45
+            TabIndex        =   48
             Top             =   120
             Width           =   975
          End
@@ -59,7 +59,7 @@ Begin VB.Form MainForm
             Enabled         =   0   'False
             Height          =   285
             Left            =   1080
-            TabIndex        =   46
+            TabIndex        =   49
             Top             =   120
             Width           =   3855
          End
@@ -68,7 +68,7 @@ Begin VB.Form MainForm
             Enabled         =   0   'False
             Height          =   375
             Left            =   0
-            TabIndex        =   47
+            TabIndex        =   50
             Top             =   480
             Width           =   1600
          End
@@ -77,7 +77,7 @@ Begin VB.Form MainForm
             Enabled         =   0   'False
             Height          =   375
             Left            =   3360
-            TabIndex        =   48
+            TabIndex        =   51
             Top             =   480
             Width           =   1605
          End
@@ -87,14 +87,14 @@ Begin VB.Form MainForm
       Caption         =   "Advanced options"
       Height          =   4215
       Left            =   6720
-      TabIndex        =   49
+      TabIndex        =   52
       Top             =   1440
       Width           =   5175
       Begin VB.CheckBox ChkCloseOnExit 
          Caption         =   "Don't close console window on exit"
          Height          =   315
          Left            =   120
-         TabIndex        =   64
+         TabIndex        =   67
          Top             =   3840
          Width           =   3015
       End
@@ -103,7 +103,7 @@ Begin VB.Form MainForm
          Enabled         =   0   'False
          Height          =   315
          Left            =   120
-         TabIndex        =   62
+         TabIndex        =   65
          Top             =   3120
          Width           =   2055
       End
@@ -111,7 +111,7 @@ Begin VB.Form MainForm
          Caption         =   "Enable verbose output"
          Height          =   315
          Left            =   120
-         TabIndex        =   63
+         TabIndex        =   66
          Top             =   3480
          Width           =   2415
       End
@@ -119,7 +119,7 @@ Begin VB.Form MainForm
          Caption         =   "Widescreen signalling (WSS) on line 23"
          Height          =   315
          Left            =   120
-         TabIndex        =   53
+         TabIndex        =   56
          Top             =   1320
          Width           =   3255
       End
@@ -128,7 +128,7 @@ Begin VB.Form MainForm
          Height          =   315
          Left            =   3600
          Style           =   2  'Dropdown List
-         TabIndex        =   54
+         TabIndex        =   57
          Top             =   1320
          Width           =   1455
       End
@@ -136,7 +136,7 @@ Begin VB.Form MainForm
          Caption         =   "Gamma correction"
          Height          =   315
          Left            =   120
-         TabIndex        =   55
+         TabIndex        =   58
          Top             =   1680
          Width           =   2175
       End
@@ -146,7 +146,7 @@ Begin VB.Form MainForm
          Height          =   285
          Left            =   4320
          MaxLength       =   4
-         TabIndex        =   56
+         TabIndex        =   59
          Top             =   1680
          Width           =   735
       End
@@ -154,7 +154,7 @@ Begin VB.Form MainForm
          Caption         =   "Output level"
          Height          =   315
          Left            =   120
-         TabIndex        =   57
+         TabIndex        =   60
          Top             =   2040
          Width           =   1935
       End
@@ -164,7 +164,7 @@ Begin VB.Form MainForm
          Height          =   285
          Left            =   4320
          MaxLength       =   4
-         TabIndex        =   58
+         TabIndex        =   61
          Top             =   2040
          Width           =   735
       End
@@ -172,7 +172,7 @@ Begin VB.Form MainForm
          Caption         =   "FM deviation (MHz)"
          Height          =   315
          Left            =   120
-         TabIndex        =   59
+         TabIndex        =   62
          Top             =   2400
          Width           =   1935
       End
@@ -182,7 +182,7 @@ Begin VB.Form MainForm
          Height          =   285
          Left            =   4320
          MaxLength       =   5
-         TabIndex        =   60
+         TabIndex        =   63
          Top             =   2400
          Width           =   735
       End
@@ -190,7 +190,7 @@ Begin VB.Form MainForm
          Caption         =   "Macrovision ACP"
          Height          =   315
          Left            =   120
-         TabIndex        =   52
+         TabIndex        =   55
          Top             =   960
          Width           =   1575
       End
@@ -198,7 +198,7 @@ Begin VB.Form MainForm
          Caption         =   "VSB-AM filter"
          Height          =   315
          Left            =   120
-         TabIndex        =   61
+         TabIndex        =   64
          Top             =   2760
          Width           =   3135
       End
@@ -206,7 +206,7 @@ Begin VB.Form MainForm
          Caption         =   "Audio enabled"
          Height          =   315
          Left            =   120
-         TabIndex        =   50
+         TabIndex        =   53
          Top             =   240
          Width           =   1455
       End
@@ -215,7 +215,7 @@ Begin VB.Form MainForm
          Enabled         =   0   'False
          Height          =   315
          Left            =   120
-         TabIndex        =   51
+         TabIndex        =   54
          Top             =   600
          Width           =   1575
       End
@@ -225,7 +225,7 @@ Begin VB.Form MainForm
       Height          =   285
       Left            =   120
       Locked          =   -1  'True
-      TabIndex        =   66
+      TabIndex        =   69
       Top             =   6480
       Width           =   11775
    End
@@ -233,7 +233,7 @@ Begin VB.Form MainForm
       Caption         =   "Run hacktv..."
       Height          =   375
       Left            =   6720
-      TabIndex        =   65
+      TabIndex        =   68
       Top             =   5880
       Width           =   5175
    End
@@ -241,7 +241,7 @@ Begin VB.Form MainForm
       Caption         =   "Frequency and TX options"
       Height          =   1695
       Left            =   120
-      TabIndex        =   31
+      TabIndex        =   34
       Top             =   4680
       Width           =   6495
       Begin VB.PictureBox Picture3 
@@ -250,14 +250,14 @@ Begin VB.Form MainForm
          Left            =   120
          ScaleHeight     =   255
          ScaleWidth      =   4095
-         TabIndex        =   32
+         TabIndex        =   35
          Top             =   360
          Width           =   4095
          Begin VB.OptionButton VHF 
             Caption         =   "VHF"
             Height          =   255
             Left            =   1200
-            TabIndex        =   34
+            TabIndex        =   37
             Top             =   0
             Width           =   615
          End
@@ -265,7 +265,7 @@ Begin VB.Form MainForm
             Caption         =   "UHF"
             Height          =   255
             Left            =   0
-            TabIndex        =   33
+            TabIndex        =   36
             Top             =   0
             Width           =   735
          End
@@ -273,7 +273,7 @@ Begin VB.Form MainForm
             Caption         =   "Custom"
             Height          =   255
             Left            =   3000
-            TabIndex        =   35
+            TabIndex        =   38
             Top             =   0
             Width           =   975
          End
@@ -282,7 +282,7 @@ Begin VB.Form MainForm
          Height          =   285
          Left            =   1320
          MaxLength       =   2
-         TabIndex        =   41
+         TabIndex        =   44
          Text            =   "0"
          Top             =   1200
          Width           =   1455
@@ -292,7 +292,7 @@ Begin VB.Form MainForm
          Height          =   285
          Left            =   4680
          MaxLength       =   7
-         TabIndex        =   39
+         TabIndex        =   42
          Top             =   720
          Width           =   1695
       End
@@ -300,7 +300,7 @@ Begin VB.Form MainForm
          Caption         =   "TX RF amplifier"
          Height          =   255
          Left            =   3120
-         TabIndex        =   42
+         TabIndex        =   45
          Top             =   1200
          Width           =   1575
       End
@@ -308,7 +308,7 @@ Begin VB.Form MainForm
          Height          =   315
          Left            =   1320
          Style           =   2  'Dropdown List
-         TabIndex        =   37
+         TabIndex        =   40
          Top             =   720
          Width           =   1455
       End
@@ -316,7 +316,7 @@ Begin VB.Form MainForm
          Caption         =   "TX gain (dB)"
          Height          =   255
          Left            =   120
-         TabIndex        =   40
+         TabIndex        =   43
          Top             =   1200
          Width           =   975
       End
@@ -324,7 +324,7 @@ Begin VB.Form MainForm
          Caption         =   "Frequency (MHz)"
          Height          =   255
          Left            =   3120
-         TabIndex        =   38
+         TabIndex        =   41
          Top             =   720
          Width           =   1335
       End
@@ -332,7 +332,7 @@ Begin VB.Form MainForm
          Caption         =   "Channel"
          Height          =   255
          Left            =   120
-         TabIndex        =   36
+         TabIndex        =   39
          Top             =   720
          Width           =   855
       End
@@ -341,16 +341,34 @@ Begin VB.Form MainForm
       Caption         =   "Video format and encryption options"
       Height          =   2055
       Left            =   120
-      TabIndex        =   15
+      TabIndex        =   16
       Top             =   2520
       Width           =   6495
+      Begin VB.ComboBox vc2key 
+         Height          =   315
+         Left            =   4260
+         Style           =   2  'Dropdown List
+         TabIndex        =   29
+         Top             =   1200
+         Visible         =   0   'False
+         Width           =   2115
+      End
+      Begin VB.ComboBox vc1key 
+         Height          =   315
+         Left            =   2040
+         Style           =   2  'Dropdown List
+         TabIndex        =   28
+         Top             =   1200
+         Visible         =   0   'False
+         Width           =   2115
+      End
       Begin VB.TextBox CardNumber 
          BackColor       =   &H8000000F&
          Enabled         =   0   'False
          Height          =   285
          Left            =   5040
          MaxLength       =   13
-         TabIndex        =   30
+         TabIndex        =   33
          Top             =   1680
          Width           =   1335
       End
@@ -359,7 +377,7 @@ Begin VB.Form MainForm
          Enabled         =   0   'False
          Height          =   195
          Left            =   3240
-         TabIndex        =   29
+         TabIndex        =   32
          Top             =   1680
          Width           =   1575
       End
@@ -368,7 +386,7 @@ Begin VB.Form MainForm
          Enabled         =   0   'False
          Height          =   195
          Left            =   1680
-         TabIndex        =   28
+         TabIndex        =   31
          Top             =   1680
          Width           =   1455
       End
@@ -377,18 +395,9 @@ Begin VB.Form MainForm
          Enabled         =   0   'False
          Height          =   195
          Left            =   120
-         TabIndex        =   27
+         TabIndex        =   30
          Top             =   1680
          Width           =   1455
-      End
-      Begin VB.ComboBox encryption_key 
-         Enabled         =   0   'False
-         Height          =   315
-         Left            =   2040
-         Style           =   2  'Dropdown List
-         TabIndex        =   26
-         Top             =   1200
-         Width           =   4335
       End
       Begin VB.PictureBox Picture2 
          BorderStyle     =   0  'None
@@ -396,14 +405,14 @@ Begin VB.Form MainForm
          Left            =   120
          ScaleHeight     =   255
          ScaleWidth      =   6255
-         TabIndex        =   16
+         TabIndex        =   17
          Top             =   360
          Width           =   6255
          Begin VB.OptionButton BW 
             Caption         =   "Black and white"
             Height          =   195
             Left            =   3840
-            TabIndex        =   20
+            TabIndex        =   21
             Top             =   0
             Width           =   1455
          End
@@ -411,7 +420,7 @@ Begin VB.Form MainForm
             Caption         =   "NTSC"
             Height          =   195
             Left            =   1200
-            TabIndex        =   18
+            TabIndex        =   19
             Top             =   0
             Width           =   855
          End
@@ -419,7 +428,7 @@ Begin VB.Form MainForm
             Caption         =   "PAL"
             Height          =   195
             Left            =   0
-            TabIndex        =   17
+            TabIndex        =   18
             Top             =   0
             Width           =   735
          End
@@ -427,7 +436,7 @@ Begin VB.Form MainForm
             Caption         =   "SECAM"
             Height          =   195
             Left            =   2520
-            TabIndex        =   19
+            TabIndex        =   20
             Top             =   0
             Width           =   855
          End
@@ -435,7 +444,7 @@ Begin VB.Form MainForm
             Caption         =   "MAC"
             Height          =   195
             Left            =   5520
-            TabIndex        =   21
+            TabIndex        =   22
             Top             =   0
             Width           =   735
          End
@@ -444,7 +453,7 @@ Begin VB.Form MainForm
          Height          =   285
          Left            =   5640
          MaxLength       =   6
-         TabIndex        =   24
+         TabIndex        =   25
          Top             =   720
          Width           =   735
       End
@@ -453,7 +462,7 @@ Begin VB.Form MainForm
          Height          =   315
          Left            =   120
          Style           =   2  'Dropdown List
-         TabIndex        =   25
+         TabIndex        =   26
          Top             =   1200
          Width           =   1815
       End
@@ -461,15 +470,24 @@ Begin VB.Form MainForm
          Height          =   315
          Left            =   120
          Style           =   2  'Dropdown List
-         TabIndex        =   22
+         TabIndex        =   23
          Top             =   720
          Width           =   3975
+      End
+      Begin VB.ComboBox encryption_key 
+         Enabled         =   0   'False
+         Height          =   315
+         Left            =   2040
+         Style           =   2  'Dropdown List
+         TabIndex        =   27
+         Top             =   1200
+         Width           =   4335
       End
       Begin VB.Label LblSampleRate 
          Caption         =   "Sample rate (MHz)"
          Height          =   285
          Left            =   4200
-         TabIndex        =   23
+         TabIndex        =   24
          Top             =   720
          Width           =   1455
       End
@@ -487,7 +505,7 @@ Begin VB.Form MainForm
          Height          =   285
          Left            =   5640
          MaxLength       =   2
-         TabIndex        =   14
+         TabIndex        =   15
          Top             =   1920
          Width           =   735
       End
@@ -496,7 +514,7 @@ Begin VB.Form MainForm
          Enabled         =   0   'False
          Height          =   255
          Left            =   120
-         TabIndex        =   12
+         TabIndex        =   13
          Top             =   1920
          Width           =   1695
       End
@@ -504,7 +522,7 @@ Begin VB.Form MainForm
          Caption         =   "Repeat indefinitely"
          Height          =   315
          Left            =   120
-         TabIndex        =   6
+         TabIndex        =   7
          Top             =   1200
          Width           =   1695
       End
@@ -512,7 +530,7 @@ Begin VB.Form MainForm
          Caption         =   "Overlay logo"
          Height          =   255
          Left            =   2880
-         TabIndex        =   10
+         TabIndex        =   11
          Top             =   1560
          Width           =   1575
       End
@@ -521,7 +539,7 @@ Begin VB.Form MainForm
          Height          =   315
          Left            =   4560
          Style           =   2  'Dropdown List
-         TabIndex        =   11
+         TabIndex        =   12
          Top             =   1560
          Width           =   1815
       End
@@ -538,7 +556,7 @@ Begin VB.Form MainForm
             Caption         =   "Browse..."
             Height          =   375
             Left            =   4800
-            TabIndex        =   5
+            TabIndex        =   6
             Top             =   360
             Width           =   1455
          End
@@ -561,7 +579,7 @@ Begin VB.Form MainForm
          Begin VB.TextBox input_source 
             Height          =   315
             Left            =   0
-            TabIndex        =   4
+            TabIndex        =   5
             Top             =   360
             Width           =   4695
          End
@@ -569,7 +587,7 @@ Begin VB.Form MainForm
             Height          =   315
             Left            =   0
             Style           =   2  'Dropdown List
-            TabIndex        =   67
+            TabIndex        =   4
             Top             =   360
             Visible         =   0   'False
             Width           =   4695
@@ -580,7 +598,7 @@ Begin VB.Form MainForm
          Enabled         =   0   'False
          Height          =   255
          Left            =   120
-         TabIndex        =   9
+         TabIndex        =   10
          Top             =   1560
          Width           =   1695
       End
@@ -590,7 +608,7 @@ Begin VB.Form MainForm
          Height          =   285
          Left            =   5640
          MaxLength       =   3
-         TabIndex        =   8
+         TabIndex        =   9
          Top             =   1200
          Width           =   735
       End
@@ -599,7 +617,7 @@ Begin VB.Form MainForm
          Enabled         =   0   'False
          Height          =   315
          Left            =   2880
-         TabIndex        =   7
+         TabIndex        =   8
          Top             =   1200
          Width           =   2055
       End
@@ -608,7 +626,7 @@ Begin VB.Form MainForm
          Enabled         =   0   'False
          Height          =   255
          Left            =   2880
-         TabIndex        =   13
+         TabIndex        =   14
          Top             =   1920
          Width           =   2055
       End
@@ -698,6 +716,9 @@ Dim URL() As String
 Dim M3USourceFile As Boolean
 Dim AppBusy As Boolean
 Dim StopProcessing As Boolean
+
+' Declare boolean used for dual VideoCrypt mode
+Dim DualVCMode As Boolean
 
 ' Declare all variables used for storing parameters
 Dim inputsource As String
@@ -933,6 +954,18 @@ End Sub
 
 Private Sub Encryption_Key_Click()
     Call CheckEncryptionKey
+End Sub
+
+Private Sub vc1key_Click()
+    If vc2key.ListIndex = "-1" Then
+        vc2key.ListIndex = "0"
+    Else
+        Call CheckDualEncryptionKey
+    End If
+End Sub
+
+Private Sub vc2key_Click()
+    Call CheckDualEncryptionKey
 End Sub
 
 Private Sub ChkOutputLevel_Click()
@@ -1247,10 +1280,20 @@ Private Sub SaveConfigFile(ByVal FileName As String)
     End If
     ' Encryption
     WriteIniValue FileName, "Settings", "encryptiontype", encryption_type.ListIndex
-    If Not encryption_type.ListIndex = 0 Then
-        WriteIniValue FileName, "Settings", "encryptionkey", encryption_key.ListIndex
-    Else
+    If DualVCMode = False Then
+        If encryption_type.ListIndex = 0 Then
+            WriteIniValue FileName, "Settings", "encryptionkey", ""
+            WriteIniValue FileName, "Settings", "vc1key", ""
+            WriteIniValue FileName, "Settings", "vc2key", ""
+        Else
+            WriteIniValue FileName, "Settings", "encryptionkey", encryption_key.ListIndex
+            WriteIniValue FileName, "Settings", "vc1key", ""
+            WriteIniValue FileName, "Settings", "vc2key", ""
+        End If
+    ElseIf DualVCMode = True Then
         WriteIniValue FileName, "Settings", "encryptionkey", ""
+        WriteIniValue FileName, "Settings", "vc1key", vc1key.ListIndex
+        WriteIniValue FileName, "Settings", "vc2key", vc2key.ListIndex
     End If
     ' EMM
     If ChkEnableEMM.Value = vbChecked Then
@@ -1465,6 +1508,10 @@ Private Sub OpenFile_Click()
     ' Encryption
     encryption_type.ListIndex = ReadIniValue(ConfigFileName, "Settings", "encryptiontype")
     If Not encryption_type.ListIndex = 0 Then encryption_key.ListIndex = ReadIniValue(ConfigFileName, "Settings", "encryptionkey")
+    If DualVCMode = True Then
+        vc1key.ListIndex = ReadIniValue(ConfigFileName, "Settings", "vc1key")
+        vc2key.ListIndex = ReadIniValue(ConfigFileName, "Settings", "vc2key")
+    End If
     ' EMM
     If ReadIniValue(ConfigFileName, "Settings", "emm") = "0" Then
         ChkEnableEMM.Value = vbUnchecked
@@ -1706,7 +1753,6 @@ Private Sub ChkNICAM_Click()
     End If
 End Sub
 
-
 Private Sub VHF_Click()
 ' Populates the frequency_ch combobox with VHF channel frequencies for the selected video format
 ' Also disables the frequency_mhz textbox
@@ -1823,6 +1869,7 @@ Private Sub MAC_Click()
     Else
         Call DisableEncryption
     End If
+    If DualVCMode = True Then Call DisableDualVCMode
     ChkACP.Enabled = True
     With VideoFormat
         .Clear
@@ -2961,19 +3008,32 @@ End Sub
 Private Sub CheckEncryptionType()
     encryptiontype = encryption_type.ItemData(encryption_type.ListIndex)
     If encryptiontype = "600" Then
-        encryption_key.Enabled = False
-        encryption_key.ListIndex = "-1"
+        Call DisableDualVCMode
         encryptiontype = ""
+    ElseIf encryptiontype = "606" Then
+    ' Hide the encryption_key box and show the vc1key and vc2key boxes
+        With encryption_key
+            .Enabled = False
+            .Visible = False
+            .Clear
+        End With
+        vc1key.Enabled = True
+        vc1key.Visible = True
+        vc2key.Enabled = True
+        vc2key.Visible = True
+        DualVCMode = True
+        Call AddBothVCModes
     Else
+        If DualVCMode = True Then Call DisableDualVCMode
         encryption_key.Enabled = True
         If encryptiontype = "601" Then Call AddVC1Modes
         If encryptiontype = "602" Then Call AddVC2Modes
         If encryptiontype = "603" Then Call AddVCSModes
         If encryptiontype = "604" Then Call AddSysterModes
         If encryptiontype = "605" Then Call AddSysterModes
-        If encryptiontype = "606" Then Call AddBothVCModes
         If encryptiontype = "607" Then Call AddECModes
         If encryptiontype = "608" Then Call AddECModes
+        DualVCMode = False
     End If
 End Sub
 
@@ -3011,6 +3071,19 @@ Private Sub AddVC1Modes()
     End With
 End Sub
 
+Private Sub DisableDualVCMode()
+' Disables and hides the VC1 and VC2 mode comboboxes and re-enables and shows the single mode combobox
+    DualVCMode = False
+    encryption_key.Visible = True
+    encryption_key.Enabled = False
+    encryption_key.ListIndex = "-1"
+    vc1key.Enabled = False
+    vc1key.Visible = False
+    vc2key.Enabled = False
+    vc2key.Visible = False
+    encryptionkey = ""
+End Sub
+
 Private Sub AddVC2Modes()
     encryptiontype = "--videocrypt2"
     SampleRate.Text = "14"
@@ -3030,12 +3103,49 @@ Private Sub AddBothVCModes()
 ' Adding two encryption types simultaneously is a little awkward with the structure that we have
 ' We won't define the encryptiontype variable yet but will do so when we check the encryption key
     SampleRate.Text = "14"
-    With encryption_key
+    With vc1key
         .Clear
-        .AddItem "Free access/soft encryption (no card required)"
-        .ItemData(.NewIndex) = "691"
-        .ListIndex = "0"
+        .AddItem "Free access"
+        .ItemData(.NewIndex) = "611"
+        If forktype = "CJ" Then
+            .Enabled = True
+            .AddItem "Sky 12 card"
+            .ItemData(.NewIndex) = "620"
+            .AddItem "Sky 11 card"
+            .ItemData(.NewIndex) = "615"
+            .AddItem "Sky 10 card"
+            .ItemData(.NewIndex) = "618"
+            .AddItem "Sky 10 PPV mode"
+            .ItemData(.NewIndex) = "619"
+            .AddItem "Sky 09 card"
+            .ItemData(.NewIndex) = "613"
+            .AddItem "Sky 07 or 06 card"
+            .ItemData(.NewIndex) = "614"
+            .AddItem "Old Adult Channel card"
+            .ItemData(.NewIndex) = "616"
+            .AddItem "Newer Adult Channel card"
+            .ItemData(.NewIndex) = "621"
+            .AddItem "xtea mode"
+            .ItemData(.NewIndex) = "617"
+        Else
+            ' fsphil's version only supports Dual VC1/VC2 in free access mode
+            ' So we so grey out the comboboxes as there's only one option anyway
+            .Enabled = False
+        End If
     End With
+    With vc2key
+        .Clear
+        .AddItem "Free access"
+        .ItemData(.NewIndex) = "631"
+        If forktype = "CJ" Then
+            .Enabled = True
+            .AddItem "Multichoice Europe card"
+            .ItemData(.NewIndex) = "632"
+        Else
+            .Enabled = False
+        End If
+    End With
+    vc1key.ListIndex = "0"
 End Sub
 
 Private Sub AddVCSModes()
@@ -3114,8 +3224,7 @@ Private Sub AddECModes()
 End Sub
 
 Private Sub CheckEncryptionKey()
-' 600 is the index value for encryption off
-    If Not encryptiontype = "600" Then
+    If encryption_key.Enabled = True Then
 ' Read the index value assigned to the encryptionkey combobox
 ' Use this value to set the correct command line parameters
         encryptionkey = encryption_key.ItemData(encryption_key.ListIndex)
@@ -3137,15 +3246,6 @@ Private Sub CheckEncryptionKey()
 ' VideoCrypt S
         If encryptionkey = "641" Then encryptionkey = "free"
         If encryptionkey = "642" Then encryptionkey = "conditional"
-' VideoCrypt I & II
-' We have to go against our naming conventions when using VC1 and VC2 simultaneously
-' This is because hacktv expects --videocrypt <mode> --videocrypt2 <mode>
-' As a workaround, we set the encryption type to the VC1 mode and the encryption key to the VC2 mode
-' Free access mode
-        If encryptionkey = "691" Then
-            encryptiontype = "--videocrypt free"
-            encryptionkey = "--videocrypt2 free"
-        End If
 ' Syster/D11
         If encryptionkey = "651" Then encryptionkey = ""
         If encryptionkey = "653" Then encryptionkey = "premiere-ca"
@@ -3199,6 +3299,47 @@ Private Sub CheckEncryptionKey()
         Call DisableAudioEncryption
 ' Disable Show ECM checkbox
         Call DisableShowECM
+    End If
+End Sub
+
+Private Sub CheckDualEncryptionKey()
+' Special sub for dual VC1/VC2 mode
+' This needs special handling because hacktv expects --videocrypt <mode> --videocrypt2 <mode>
+' As a workaround, we set the encryption type to the VC1 mode and the encryption key to the VC2 mode
+    If DualVCMode = True Then
+' VideoCrypt I
+        encryptiontype = vc1key.ItemData(vc1key.ListIndex)
+        If encryptiontype = "611" Then encryptiontype = "--videocrypt free"
+        If encryptiontype = "612" Then encryptiontype = "--videocrypt conditional"
+        If encryptiontype = "613" Then encryptiontype = "--videocrypt sky09"
+        If encryptiontype = "614" Then encryptiontype = "--videocrypt sky07"
+        If encryptiontype = "615" Then encryptiontype = "--videocrypt sky11"
+        If encryptiontype = "616" Then encryptiontype = "--videocrypt tac1"
+        If encryptiontype = "617" Then encryptiontype = "--videocrypt xtea"
+        If encryptiontype = "618" Then encryptiontype = "--videocrypt sky10"
+        If encryptiontype = "619" Then encryptiontype = "--videocrypt sky10ppv"
+        If encryptiontype = "620" Then encryptiontype = "--videocrypt sky12"
+        If encryptiontype = "621" Then encryptiontype = "--videocrypt tac2"
+' VideoCrypt II
+        encryptionkey = vc2key.ItemData(vc2key.ListIndex)
+        If encryptionkey = "631" Then encryptionkey = "--videocrypt2 free"
+        If encryptionkey = "632" Then encryptionkey = "--videocrypt2 conditional"
+' ACP is not supported when encryption is enabled, so disable the option
+        ChkACP.Enabled = False
+        ChkACP.Value = vbUnchecked
+' Enable ShowECM option if Captain Jack fork enabled
+        If forktype = "CJ" Then
+            Call EnableShowECM
+        Else
+            Call DisableShowECM
+        End If
+' Disable audio encryption
+        If ChkEncryptAudio.Enabled = True Then Call DisableAudioEncryption
+' Disable EMM support
+        If ChkEnableEMM.Enabled = True Then Call DisableEMMOptions
+    ElseIf DualVCMode = False Then
+        Call CheckEncryptionKey
+        Exit Sub
     End If
 End Sub
 
@@ -3392,12 +3533,12 @@ Private Function CheckCustomFrequency() As Boolean
         If Not IsNumeric(frequency_mhz.Text) Then
             CheckCustomFrequency = False
         Else
-' Fail if the frequency_mhz textbox is not between 1 and 6000
+' Fail if the frequency_mhz textbox is not between 1 and 7250
             If frequency_mhz.Text < 1 Then CheckCustomFrequency = False
-            If frequency_mhz.Text > 6000 Then CheckCustomFrequency = False
+            If frequency_mhz.Text > 7250 Then CheckCustomFrequency = False
         End If
         If CheckCustomFrequency = False Then
-            MsgBox "Please specify a frequency between 1 MHz and 6000 MHz.", vbExclamation, App.Title
+            MsgBox "Please specify a frequency between 1 MHz and 7250 MHz.", vbExclamation, App.Title
         Else
 ' As the frequency passed to hacktv is expected to be in Hz, we need to convert MHz to Hz
 ' Multiply the contents of the frequency_mhz textbox by 1,000,000 and populate the freq variable with the result
@@ -3565,7 +3706,7 @@ Private Sub RunTV()
     Dim SpacesRemoved As String
     Dim runpath As String
     Dim args As String
-    
+ 
 ' Set variables for hard-coded values
     videomodeargument = "-m"
     frequencyargument = "-f"
