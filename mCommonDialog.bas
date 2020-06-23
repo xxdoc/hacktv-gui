@@ -6,18 +6,7 @@ Public Enum EErrorCommonDialog
 End Enum
 
 Private Declare Function lstrlen Lib "kernel32" Alias "lstrlenA" (ByVal lpString As String) As Long
-Private Declare Function GlobalAlloc Lib "kernel32" (ByVal wFlags As Long, ByVal dwBytes As Long) As Long
-Private Declare Function GlobalCompact Lib "kernel32" (ByVal dwMinFree As Long) As Long
-Private Declare Function GlobalFree Lib "kernel32" (ByVal hMem As Long) As Long
-Private Declare Function GlobalLock Lib "kernel32" (ByVal hMem As Long) As Long
-Private Declare Function GlobalReAlloc Lib "kernel32" (ByVal hMem As Long, ByVal dwBytes As Long, ByVal wFlags As Long) As Long
-Private Declare Function GlobalSize Lib "kernel32" (ByVal hMem As Long) As Long
-Private Declare Function GlobalUnlock Lib "kernel32" (ByVal hMem As Long) As Long
-Private Declare Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" ( _
-    lpvDest As Any, lpvSource As Any, ByVal cbCopy As Long)
-Private Declare Sub CopyMemoryStr Lib "kernel32" Alias "RtlMoveMemory" ( _
-    lpvDest As Any, ByVal lpvSource As String, ByVal cbCopy As Long)
-
+    
 Private Const MAX_PATH = 260
 Private Const MAX_FILE = 260
 
@@ -77,390 +66,12 @@ Public Enum EOpenFile
     OFN_LONGNAMES = &H200000
 End Enum
 
-Private Type TCHOOSECOLOR
-    lStructSize As Long
-    hWndOwner As Long
-    hInstance As Long
-    rgbResult As Long
-    lpCustColors As Long
-    flags As Long
-    lCustData As Long
-    lpfnHook As Long
-    lpTemplateName As Long
-End Type
-
-Private Declare Function ChooseColor Lib "COMDLG32.DLL" _
-    Alias "ChooseColorA" (Color As TCHOOSECOLOR) As Long
-
-Public Enum EChooseColor
-    CC_RGBInit = &H1
-    CC_FullOpen = &H2
-    CC_PreventFullOpen = &H4
-    CC_ColorShowHelp = &H8
-' Win95 only
-    CC_SolidColor = &H80
-    CC_AnyColor = &H100
-' End Win95 only
-    CC_ENABLEHOOK = &H10
-    CC_ENABLETEMPLATE = &H20
-    CC_EnableTemplateHandle = &H40
-End Enum
-Private Declare Function GetSysColor Lib "USER32" (ByVal nIndex As Long) As Long
-
-Private Type TCHOOSEFONT
-    lStructSize As Long         ' Filled with UDT size
-    hWndOwner As Long           ' Caller's window handle
-    hdc As Long                 ' Printer DC/IC or NULL
-    lpLogFont As Long           ' Pointer to LOGFONT
-    iPointSize As Long          ' 10 * size in points of font
-    flags As Long               ' Type flags
-    rgbColors As Long           ' Returned text color
-    lCustData As Long           ' Data passed to hook function
-    lpfnHook As Long            ' Pointer to hook function
-    lpTemplateName As Long      ' Custom template name
-    hInstance As Long           ' Instance handle for template
-    lpszStyle As String         ' Return style field
-    nFontType As Integer        ' Font type bits
-    iAlign As Integer           ' Filler
-    nSizeMin As Long            ' Minimum point size allowed
-    nSizeMax As Long            ' Maximum point size allowed
-End Type
-Private Declare Function ChooseFont Lib "COMDLG32" _
-    Alias "ChooseFontA" (chfont As TCHOOSEFONT) As Long
-
-Private Const LF_FACESIZE = 32
-Private Type LOGFONT
-    lfHeight As Long
-    lfWidth As Long
-    lfEscapement As Long
-    lfOrientation As Long
-    lfWeight As Long
-    lfItalic As Byte
-    lfUnderline As Byte
-    lfStrikeOut As Byte
-    lfCharSet As Byte
-    lfOutPrecision As Byte
-    lfClipPrecision As Byte
-    lfQuality As Byte
-    lfPitchAndFamily As Byte
-    lfFaceName(LF_FACESIZE) As Byte
-End Type
-
-Public Enum EChooseFont
-    CF_ScreenFonts = &H1
-    CF_PrinterFonts = &H2
-    CF_BOTH = &H3
-    CF_FontShowHelp = &H4
-    CF_UseStyle = &H80
-    CF_EFFECTS = &H100
-    CF_AnsiOnly = &H400
-    CF_NoVectorFonts = &H800
-    CF_NoOemFonts = CF_NoVectorFonts
-    CF_NoSimulations = &H1000
-    CF_LimitSize = &H2000
-    CF_FixedPitchOnly = &H4000
-    CF_WYSIWYG = &H8000  ' Must also have ScreenFonts And PrinterFonts
-    CF_ForceFontExist = &H10000
-    CF_ScalableOnly = &H20000
-    CF_TTOnly = &H40000
-    CF_NoFaceSel = &H80000
-    CF_NoStyleSel = &H100000
-    CF_NoSizeSel = &H200000
-    ' Win95 only
-    CF_SelectScript = &H400000
-    CF_NoScriptSel = &H800000
-    CF_NoVertFonts = &H1000000
-
-    CF_InitToLogFontStruct = &H40
-    CF_Apply = &H200
-    CF_EnableHook = &H8
-    CF_EnableTemplate = &H10
-    CF_EnableTemplateHandle = &H20
-    CF_FontNotSupported = &H238
-End Enum
-
-' These are extra nFontType bits that are added to what is returned to the
-' EnumFonts callback routine
-
-Public Enum EFontType
-    Simulated_FontType = &H8000
-    Printer_FontType = &H4000
-    Screen_FontType = &H2000
-    Bold_FontType = &H100
-    Italic_FontType = &H200
-    Regular_FontType = &H400
-End Enum
-
-Private Type TPRINTDLG
-    lStructSize As Long
-    hWndOwner As Long
-    hDevMode As Long
-    hDevNames As Long
-    hdc As Long
-    flags As Long
-    nFromPage As Integer
-    nToPage As Integer
-    nMinPage As Integer
-    nMaxPage As Integer
-    nCopies As Integer
-    hInstance As Long
-    lCustData As Long
-    lpfnPrintHook As Long
-    lpfnSetupHook As Long
-    lpPrintTemplateName As Long
-    lpSetupTemplateName As Long
-    hPrintTemplate As Long
-    hSetupTemplate As Long
-End Type
-
-'  DEVMODE collation selections
-Private Const DMCOLLATE_FALSE = 0
-Private Const DMCOLLATE_TRUE = 1
-
-Private Declare Function PrintDlg Lib "COMDLG32.DLL" _
-    Alias "PrintDlgA" (prtdlg As TPRINTDLG) As Integer
-
-Public Enum EPrintDialog
-    PD_ALLPAGES = &H0
-    PD_SELECTION = &H1
-    PD_PAGENUMS = &H2
-    PD_NOSELECTION = &H4
-    PD_NOPAGENUMS = &H8
-    PD_COLLATE = &H10
-    PD_PRINTTOFILE = &H20
-    PD_PRINTSETUP = &H40
-    PD_NOWARNING = &H80
-    PD_RETURNDC = &H100
-    PD_RETURNIC = &H200
-    PD_RETURNDEFAULT = &H400
-    PD_SHOWHELP = &H800
-    PD_ENABLEPRINTHOOK = &H1000
-    PD_ENABLESETUPHOOK = &H2000
-    PD_ENABLEPRINTTEMPLATE = &H4000
-    PD_ENABLESETUPTEMPLATE = &H8000
-    PD_ENABLEPRINTTEMPLATEHANDLE = &H10000
-    PD_ENABLESETUPTEMPLATEHANDLE = &H20000
-    PD_USEDEVMODECOPIES = &H40000
-    PD_USEDEVMODECOPIESANDCOLLATE = &H40000
-    PD_DISABLEPRINTTOFILE = &H80000
-    PD_HIDEPRINTTOFILE = &H100000
-    PD_NONETWORKBUTTON = &H200000
-End Enum
-
-Private Type DEVNAMES
-    wDriverOffset As Integer
-    wDeviceOffset As Integer
-    wOutputOffset As Integer
-    wDefault As Integer
-End Type
-
-Private Const CCHDEVICENAME = 32
-Private Const CCHFORMNAME = 32
-Private Type DevMode
-    dmDeviceName As String * CCHDEVICENAME
-    dmSpecVersion As Integer
-    dmDriverVersion As Integer
-    dmSize As Integer
-    dmDriverExtra As Integer
-    dmFields As Long
-    dmOrientation As Integer
-    dmPaperSize As Integer
-    dmPaperLength As Integer
-    dmPaperWidth As Integer
-    dmScale As Integer
-    dmCopies As Integer
-    dmDefaultSource As Integer
-    dmPrintQuality As Integer
-    dmColor As Integer
-    dmDuplex As Integer
-    dmYResolution As Integer
-    dmTTOption As Integer
-    dmCollate As Integer
-    dmFormName As String * CCHFORMNAME
-    dmUnusedPadding As Integer
-    dmBitsPerPel As Integer
-    dmPelsWidth As Long
-    dmPelsHeight As Long
-    dmDisplayFlags As Long
-    dmDisplayFrequency As Long
-End Type
-
-' New Win95 Page Setup dialogs are up to you
-Private Type POINTL
-    x As Long
-    y As Long
-End Type
-Private Type RECT
-    Left As Long
-    TOp As Long
-    Right As Long
-    Bottom As Long
-End Type
-
-
-Private Type TPAGESETUPDLG
-    lStructSize                 As Long
-    hWndOwner                   As Long
-    hDevMode                    As Long
-    hDevNames                   As Long
-    flags                       As Long
-    ptPaperSize                 As POINTL
-    rtMinMargin                 As RECT
-    rtMargin                    As RECT
-    hInstance                   As Long
-    lCustData                   As Long
-    lpfnPageSetupHook           As Long
-    lpfnPagePaintHook           As Long
-    lpPageSetupTemplateName     As Long
-    hPageSetupTemplate          As Long
-End Type
-
-' EPaperSize constants same as vbPRPS constants
-Public Enum EPaperSize
-    epsLetter = 1          ' Letter, 8 1/2 x 11 in.
-    epsLetterSmall         ' Letter Small, 8 1/2 x 11 in.
-    epsTabloid             ' Tabloid, 11 x 17 in.
-    epsLedger              ' Ledger, 17 x 11 in.
-    epsLegal               ' Legal, 8 1/2 x 14 in.
-    epsStatement           ' Statement, 5 1/2 x 8 1/2 in.
-    epsExecutive           ' Executive, 7 1/2 x 10 1/2 in.
-    epsA3                  ' A3, 297 x 420 mm
-    epsA4                  ' A4, 210 x 297 mm
-    epsA4Small             ' A4 Small, 210 x 297 mm
-    epsA5                  ' A5, 148 x 210 mm
-    epsB4                  ' B4, 250 x 354 mm
-    epsB5                  ' B5, 182 x 257 mm
-    epsFolio               ' Folio, 8 1/2 x 13 in.
-    epsQuarto              ' Quarto, 215 x 275 mm
-    eps10x14               ' 10 x 14 in.
-    eps11x17               ' 11 x 17 in.
-    epsNote                ' Note, 8 1/2 x 11 in.
-    epsEnv9                ' Envelope #9, 3 7/8 x 8 7/8 in.
-    epsEnv10               ' Envelope #10, 4 1/8 x 9 1/2 in.
-    epsEnv11               ' Envelope #11, 4 1/2 x 10 3/8 in.
-    epsEnv12               ' Envelope #12, 4 1/2 x 11 in.
-    epsEnv14               ' Envelope #14, 5 x 11 1/2 in.
-    epsCSheet              ' C size sheet
-    epsDSheet              ' D size sheet
-    epsESheet              ' E size sheet
-    epsEnvDL               ' Envelope DL, 110 x 220 mm
-    epsEnvC3               ' Envelope C3, 324 x 458 mm
-    epsEnvC4               ' Envelope C4, 229 x 324 mm
-    epsEnvC5               ' Envelope C5, 162 x 229 mm
-    epsEnvC6               ' Envelope C6, 114 x 162 mm
-    epsEnvC65              ' Envelope C65, 114 x 229 mm
-    epsEnvB4               ' Envelope B4, 250 x 353 mm
-    epsEnvB5               ' Envelope B5, 176 x 250 mm
-    epsEnvB6               ' Envelope B6, 176 x 125 mm
-    epsEnvItaly            ' Envelope, 110 x 230 mm
-    epsenvmonarch          ' Envelope Monarch, 3 7/8 x 7 1/2 in.
-    epsEnvPersonal         ' Envelope, 3 5/8 x 6 1/2 in.
-    epsFanfoldUS           ' U.S. Standard Fanfold, 14 7/8 x 11 in.
-    epsFanfoldStdGerman    ' German Standard Fanfold, 8 1/2 x 12 in.
-    epsFanfoldLglGerman    ' German Legal Fanfold, 8 1/2 x 13 in.
-    epsUser = 256          ' User-defined
-End Enum
-
-' EPrintQuality constants same as vbPRPQ constants
-Public Enum EPrintQuality
-    epqDraft = -1
-    epqLow = -2
-    epqMedium = -3
-    epqHigh = -4
-End Enum
-
-Public Enum EOrientation
-    eoPortrait = 1
-    eoLandscape
-End Enum
-
-Private Declare Function PageSetupDlg Lib "COMDLG32" _
-    Alias "PageSetupDlgA" (lppage As TPAGESETUPDLG) As Boolean
-
-Public Enum EPageSetup
-    PSD_Defaultminmargins = &H0 ' Default (printer's)
-    PSD_InWinIniIntlMeasure = &H0
-    PSD_MINMARGINS = &H1
-    PSD_MARGINS = &H2
-    PSD_INTHOUSANDTHSOFINCHES = &H4
-    PSD_INHUNDREDTHSOFMILLIMETERS = &H8
-    PSD_DISABLEMARGINS = &H10
-    PSD_DISABLEPRINTER = &H20
-    PSD_NoWarning = &H80
-    PSD_DISABLEORIENTATION = &H100
-    PSD_ReturnDefault = &H400
-    PSD_DISABLEPAPER = &H200
-    PSD_ShowHelp = &H800
-    PSD_EnablePageSetupHook = &H2000
-    PSD_EnablePageSetupTemplate = &H8000
-    PSD_EnablePageSetupTemplateHandle = &H20000
-    PSD_EnablePagePaintHook = &H40000
-    PSD_DisablePagePainting = &H80000
-End Enum
-
-Public Enum EPageSetupUnits
-    epsuInches
-    epsuMillimeters
-End Enum
-
 ' Common dialog errors
 
 Private Declare Function CommDlgExtendedError Lib "COMDLG32" () As Long
 
-Public Enum EDialogError
-    CDERR_DIALOGFAILURE = &HFFFF
-
-    CDERR_GENERALCODES = &H0
-    CDERR_STRUCTSIZE = &H1
-    CDERR_INITIALIZATION = &H2
-    CDERR_NOTEMPLATE = &H3
-    CDERR_NOHINSTANCE = &H4
-    CDERR_LOADSTRFAILURE = &H5
-    CDERR_FINDRESFAILURE = &H6
-    CDERR_LOADRESFAILURE = &H7
-    CDERR_LOCKRESFAILURE = &H8
-    CDERR_MEMALLOCFAILURE = &H9
-    CDERR_MEMLOCKFAILURE = &HA
-    CDERR_NOHOOK = &HB
-    CDERR_REGISTERMSGFAIL = &HC
-
-    PDERR_PRINTERCODES = &H1000
-    PDERR_SETUPFAILURE = &H1001
-    PDERR_PARSEFAILURE = &H1002
-    PDERR_RETDEFFAILURE = &H1003
-    PDERR_LOADDRVFAILURE = &H1004
-    PDERR_GETDEVMODEFAIL = &H1005
-    PDERR_INITFAILURE = &H1006
-    PDERR_NODEVICES = &H1007
-    PDERR_NODEFAULTPRN = &H1008
-    PDERR_DNDMMISMATCH = &H1009
-    PDERR_CREATEICFAILURE = &H100A
-    PDERR_PRINTERNOTFOUND = &H100B
-    PDERR_DEFAULTDIFFERENT = &H100C
-
-    CFERR_CHOOSEFONTCODES = &H2000
-    CFERR_NOFONTS = &H2001
-    CFERR_MAXLESSTHANMIN = &H2002
-
-    FNERR_FILENAMECODES = &H3000
-    FNERR_SUBCLASSFAILURE = &H3001
-    FNERR_INVALIDFILENAME = &H3002
-    FNERR_BUFFERTOOSMALL = &H3003
-
-    CCERR_CHOOSECOLORCODES = &H5000
-End Enum
-
-' Array of custom colors lasts for life of app
-Private alCustom(0 To 15) As Long, fNotFirst As Boolean
-
-Public Enum EPrintRange
-    eprAll
-    eprPageNumbers
-    eprSelection
-End Enum
 Private m_lApiReturn As Long
 Private m_lExtendedError As Long
-Private m_dvmode As DevMode
 
 Public Property Get APIReturn() As Long
     'return object's APIReturn property
@@ -477,7 +88,7 @@ Private Sub Class_Initialize()
 End Sub
 #End If
 
-Function VBGetOpenFileName(Filename As String, _
+Function VBGetOpenFileName(FileName As String, _
                            Optional FileTitle As String, _
                            Optional FileMustExist As Boolean = True, _
                            Optional MultiSelect As Boolean = False, _
@@ -488,7 +99,7 @@ Function VBGetOpenFileName(Filename As String, _
                            Optional InitDir As String, _
                            Optional DlgTitle As String, _
                            Optional DefaultExt As String, _
-                           Optional Owner As Long = -1, _
+                           Optional owner As Long = -1, _
                            Optional flags As Long = 0) As Boolean
 
     Dim opfile As OPENFILENAME, s As String, afFlags As Long
@@ -508,7 +119,7 @@ With opfile
              (flags And CLng(Not (OFN_ENABLEHOOK Or _
                                   OFN_ENABLETEMPLATE)))
     ' Owner can take handle of owning window
-    If Owner <> -1 Then .hWndOwner = Owner
+    If owner <> -1 Then .hWndOwner = owner
     ' InitDir can take initial directory string
     .lpstrInitialDir = InitDir
     ' DefaultExt can take default extension
@@ -532,7 +143,7 @@ With opfile
     .nFilterIndex = FilterIndex
 
     ' Pad file and file title buffers to maximum path
-    s = Filename & String$(MAX_PATH - Len(Filename), 0)
+    s = FileName & String$(MAX_PATH - Len(FileName), 0)
     .lpstrFile = s
     .nMaxFile = MAX_PATH
     s = FileTitle & String$(MAX_FILE - Len(FileTitle), 0)
@@ -545,7 +156,7 @@ With opfile
     Case 1
         ' Success
         VBGetOpenFileName = True
-        Filename = StrZToStr(.lpstrFile)
+        FileName = StrZToStr(.lpstrFile)
         FileTitle = StrZToStr(.lpstrFileTitle)
         flags = .flags
         ' Return the filter index
@@ -556,7 +167,7 @@ With opfile
     Case 0
         ' Cancelled
         VBGetOpenFileName = False
-        Filename = ""
+        FileName = ""
         FileTitle = ""
         flags = 0
         FilterIndex = -1
@@ -565,7 +176,7 @@ With opfile
         ' Extended error
         m_lExtendedError = CommDlgExtendedError()
         VBGetOpenFileName = False
-        Filename = ""
+        FileName = ""
         FileTitle = ""
         flags = 0
         FilterIndex = -1
@@ -577,7 +188,7 @@ Private Function StrZToStr(s As String) As String
     StrZToStr = Left$(s, lstrlen(s))
 End Function
 
-Function VBGetSaveFileName(Filename As String, _
+Function VBGetSaveFileName(FileName As String, _
                            Optional FileTitle As String, _
                            Optional OverWritePrompt As Boolean = True, _
                            Optional Filter As String = "All (*.*)| *.*", _
@@ -585,7 +196,7 @@ Function VBGetSaveFileName(Filename As String, _
                            Optional InitDir As String, _
                            Optional DlgTitle As String, _
                            Optional DefaultExt As String, _
-                           Optional Owner As Long = -1, _
+                           Optional owner As Long = -1, _
                            Optional flags As Long) As Boolean
             
     Dim opfile As OPENFILENAME, s As String
@@ -602,7 +213,7 @@ With opfile
              (flags And CLng(Not (OFN_ENABLEHOOK Or _
                                   OFN_ENABLETEMPLATE)))
     ' Owner can take handle of owning window
-    If Owner <> -1 Then .hWndOwner = Owner
+    If owner <> -1 Then .hWndOwner = owner
     ' InitDir can take initial directory string
     .lpstrInitialDir = InitDir
     ' DefaultExt can take default extension
@@ -626,7 +237,7 @@ With opfile
     .nFilterIndex = FilterIndex
 
     ' Pad file and file title buffers to maximum path
-    s = Filename & String$(MAX_PATH - Len(Filename), 0)
+    s = FileName & String$(MAX_PATH - Len(FileName), 0)
     .lpstrFile = s
     .nMaxFile = MAX_PATH
     s = FileTitle & String$(MAX_FILE - Len(FileTitle), 0)
@@ -638,7 +249,7 @@ With opfile
     Select Case m_lApiReturn
     Case 1
         VBGetSaveFileName = True
-        Filename = StrZToStr(.lpstrFile)
+        FileName = StrZToStr(.lpstrFile)
         FileTitle = StrZToStr(.lpstrFileTitle)
         flags = .flags
         ' Return the filter index
@@ -648,7 +259,7 @@ With opfile
     Case 0
         ' Cancelled:
         VBGetSaveFileName = False
-        Filename = ""
+        FileName = ""
         FileTitle = ""
         flags = 0
         FilterIndex = 0
@@ -657,7 +268,7 @@ With opfile
         ' Extended error:
         VBGetSaveFileName = False
         m_lExtendedError = CommDlgExtendedError()
-        Filename = ""
+        FileName = ""
         FileTitle = ""
         flags = 0
         FilterIndex = 0
@@ -702,416 +313,3 @@ Function VBGetFileTitle(sFile As String) As String
     End If
 
 End Function
-
-' ChooseColor wrapper
-Function VBChooseColor(Color As Long, _
-                       Optional AnyColor As Boolean = True, _
-                       Optional FullOpen As Boolean = False, _
-                       Optional DisableFullOpen As Boolean = False, _
-                       Optional Owner As Long = -1, _
-                       Optional flags As Long) As Boolean
-
-    Dim chclr As TCHOOSECOLOR
-    chclr.lStructSize = Len(chclr)
-    
-    ' Color must get reference variable to receive result
-    ' Flags can get reference variable or constant with bit flags
-    ' Owner can take handle of owning window
-    If Owner <> -1 Then chclr.hWndOwner = Owner
-
-    ' Assign color (default uninitialized value of zero is good default)
-    chclr.rgbResult = Color
-
-    ' Mask out unwanted bits
-    Dim afMask As Long
-    afMask = CLng(Not (CC_ENABLEHOOK Or _
-                       CC_ENABLETEMPLATE))
-    ' Pass in flags
-    chclr.flags = afMask And (CC_RGBInit Or _
-                  IIf(AnyColor, CC_AnyColor, CC_SolidColor) Or _
-                  (-FullOpen * CC_FullOpen) Or _
-                  (-DisableFullOpen * CC_PreventFullOpen))
-
-    ' If first time, initialize to white
-    If fNotFirst = False Then InitColors
-
-    chclr.lpCustColors = VarPtr(alCustom(0))
-    ' All other fields zero
-    
-    m_lApiReturn = ChooseColor(chclr)
-    Select Case m_lApiReturn
-    Case 1
-        ' Success
-        VBChooseColor = True
-        Color = chclr.rgbResult
-    Case 0
-        ' Cancelled
-        VBChooseColor = False
-        Color = -1
-    Case Else
-        ' Extended error
-        m_lExtendedError = CommDlgExtendedError()
-        VBChooseColor = False
-        Color = -1
-    End Select
-
-End Function
-
-Private Sub InitColors()
-    Dim i As Integer
-    ' Initialize with first 16 system interface colors
-    For i = 0 To 15
-        alCustom(i) = GetSysColor(i)
-    Next
-    fNotFirst = True
-End Sub
-
-' Property to read or modify custom colors (use to save colors in registry)
-Public Property Get CustomColor(i As Integer) As Long
-    ' If first time, initialize to white
-    If fNotFirst = False Then InitColors
-    If i >= 0 And i <= 15 Then
-        CustomColor = alCustom(i)
-    Else
-        CustomColor = -1
-    End If
-End Property
-
-Public Property Let CustomColor(i As Integer, iValue As Long)
-    ' If first time, initialize to system colors
-    If fNotFirst = False Then InitColors
-    If i >= 0 And i <= 15 Then
-        alCustom(i) = iValue
-    End If
-End Property
-
-' ChooseFont wrapper
-Function VBChooseFont(CurFont As Font, _
-                      Optional PrinterDC As Long = -1, _
-                      Optional Owner As Long = -1, _
-                      Optional Color As Long = vbBlack, _
-                      Optional MinSize As Long = 0, _
-                      Optional MaxSize As Long = 0, _
-                      Optional flags As Long = 0) As Boolean
-
-    m_lApiReturn = 0
-    m_lExtendedError = 0
-
-    ' Unwanted Flags bits
-    Const CF_FontNotSupported = CF_Apply Or CF_EnableHook Or CF_EnableTemplate
-    
-    ' Flags can get reference variable or constant with bit flags
-    ' PrinterDC can take printer DC
-    If PrinterDC = -1 Then
-        PrinterDC = 0
-        If flags And CF_PrinterFonts Then PrinterDC = Printer.hdc
-    Else
-        flags = flags Or CF_PrinterFonts
-    End If
-    ' Must have some fonts
-    If (flags And CF_PrinterFonts) = 0 Then flags = flags Or CF_ScreenFonts
-    ' Color can take initial color, receive chosen color
-    If Color <> vbBlack Then flags = flags Or CF_EFFECTS
-    ' MinSize can be minimum size accepted
-    If MinSize Then flags = flags Or CF_LimitSize
-    ' MaxSize can be maximum size accepted
-    If MaxSize Then flags = flags Or CF_LimitSize
-
-    ' Put in required internal flags and remove unsupported
-    flags = (flags Or CF_InitToLogFontStruct) And Not CF_FontNotSupported
-    
-    ' Initialize LOGFONT variable
-    Dim fnt As LOGFONT
-    Const PointsPerTwip = 1440 / 72
-    fnt.lfHeight = -(CurFont.Size * (PointsPerTwip / Screen.TwipsPerPixelY))
-    fnt.lfWeight = CurFont.Weight
-    fnt.lfItalic = CurFont.Italic
-    fnt.lfUnderline = CurFont.Underline
-    fnt.lfStrikeOut = CurFont.Strikethrough
-    ' Other fields zero
-    StrToBytes fnt.lfFaceName, CurFont.Name
-
-    ' Initialize TCHOOSEFONT variable
-    Dim cf As TCHOOSEFONT
-    cf.lStructSize = Len(cf)
-    If Owner <> -1 Then cf.hWndOwner = Owner
-    cf.hdc = PrinterDC
-    cf.lpLogFont = VarPtr(fnt)
-    cf.iPointSize = CurFont.Size * 10
-    cf.flags = flags
-    cf.rgbColors = Color
-    cf.nSizeMin = MinSize
-    cf.nSizeMax = MaxSize
-    
-    ' All other fields zero
-    m_lApiReturn = ChooseFont(cf)
-    Select Case m_lApiReturn
-    Case 1
-        ' Success
-        VBChooseFont = True
-        flags = cf.flags
-        Color = cf.rgbColors
-        CurFont.Bold = cf.nFontType And Bold_FontType
-        'CurFont.Italic = cf.nFontType And Italic_FontType
-        CurFont.Italic = fnt.lfItalic
-        CurFont.Strikethrough = fnt.lfStrikeOut
-        CurFont.Underline = fnt.lfUnderline
-        CurFont.Weight = fnt.lfWeight
-        CurFont.Size = cf.iPointSize / 10
-        CurFont.Name = BytesToStr(fnt.lfFaceName)
-    Case 0
-        ' Cancelled
-        VBChooseFont = False
-    Case Else
-        ' Extended error
-        m_lExtendedError = CommDlgExtendedError()
-        VBChooseFont = False
-    End Select
-        
-End Function
-
-' PrintDlg wrapper
-Function VBPrintDlg(hdc As Long, _
-                    Optional PrintRange As EPrintRange = eprAll, _
-                    Optional DisablePageNumbers As Boolean, _
-                    Optional FromPage As Long = 1, _
-                    Optional ToPage As Long = &HFFFF, _
-                    Optional DisableSelection As Boolean, _
-                    Optional Copies As Integer, _
-                    Optional ShowPrintToFile As Boolean, _
-                    Optional DisablePrintToFile As Boolean = True, _
-                    Optional PrintToFile As Boolean, _
-                    Optional Collate As Boolean, _
-                    Optional PreventWarning As Boolean, _
-                    Optional Owner As Long, _
-                    Optional Printer As Object, _
-                    Optional flags As Long) As Boolean
-    Dim afFlags As Long, afMask As Long
-    
-    m_lApiReturn = 0
-    m_lExtendedError = 0
-    
-    ' Set PRINTDLG flags
-    afFlags = (-DisablePageNumbers * PD_NOPAGENUMS) Or _
-              (-DisablePrintToFile * PD_DISABLEPRINTTOFILE) Or _
-              (-DisableSelection * PD_NOSELECTION) Or _
-              (-PrintToFile * PD_PRINTTOFILE) Or _
-              (-(Not ShowPrintToFile) * PD_HIDEPRINTTOFILE) Or _
-              (-PreventWarning * PD_NOWARNING) Or _
-              (-Collate * PD_COLLATE) Or _
-              PD_USEDEVMODECOPIESANDCOLLATE Or _
-              PD_RETURNDC
-    If PrintRange = eprPageNumbers Then
-        afFlags = afFlags Or PD_PAGENUMS
-    ElseIf PrintRange = eprSelection Then
-        afFlags = afFlags Or PD_SELECTION
-    End If
-    ' Mask out unwanted bits
-    afMask = CLng(Not (PD_ENABLEPRINTHOOK Or _
-                       PD_ENABLEPRINTTEMPLATE))
-    afMask = afMask And _
-             CLng(Not (PD_ENABLESETUPHOOK Or _
-                       PD_ENABLESETUPTEMPLATE))
-    
-    ' Fill in PRINTDLG structure
-    Dim pd As TPRINTDLG
-    pd.lStructSize = Len(pd)
-    pd.hWndOwner = Owner
-    pd.flags = afFlags And afMask
-    pd.nFromPage = FromPage
-    pd.nToPage = ToPage
-    pd.nMinPage = 1
-    pd.nMaxPage = &HFFFF
-    
-    ' Show Print dialog
-    m_lApiReturn = PrintDlg(pd)
-    Select Case m_lApiReturn
-    Case 1
-        VBPrintDlg = True
-        ' Return dialog values in parameters
-        hdc = pd.hdc
-        If (pd.flags And PD_PAGENUMS) Then
-            PrintRange = eprPageNumbers
-        ElseIf (pd.flags And PD_SELECTION) Then
-            PrintRange = eprSelection
-        Else
-            PrintRange = eprAll
-        End If
-        FromPage = pd.nFromPage
-        ToPage = pd.nToPage
-        PrintToFile = (pd.flags And PD_PRINTTOFILE)
-        ' Get DEVMODE structure from PRINTDLG
-        Dim pDevMode As Long
-        pDevMode = GlobalLock(pd.hDevMode)
-        CopyMemory m_dvmode, ByVal pDevMode, Len(m_dvmode)
-        Call GlobalUnlock(pd.hDevMode)
-        ' Get Copies and Collate settings from DEVMODE structure
-        Copies = m_dvmode.dmCopies
-        Collate = (m_dvmode.dmCollate = DMCOLLATE_TRUE)
-                
-        ' Set default printer properties
-        On Error Resume Next
-        If Not (Printer Is Nothing) Then
-            Printer.Copies = Copies
-            Printer.Orientation = m_dvmode.dmOrientation
-            Printer.PaperSize = m_dvmode.dmPaperSize
-            Printer.PrintQuality = m_dvmode.dmPrintQuality
-        End If
-        On Error GoTo 0
-    Case 0
-        ' Cancelled
-        VBPrintDlg = False
-    Case Else
-        ' Extended error:
-        m_lExtendedError = CommDlgExtendedError()
-        VBPrintDlg = False
-    End Select
-    
-End Function
-Private Property Get DevMode() As DevMode
-    DevMode = m_dvmode
-End Property
-
-' PageSetupDlg wrapper
-Function VBPageSetupDlg(Optional Owner As Long, _
-                        Optional DisableMargins As Boolean, _
-                        Optional DisableOrientation As Boolean, _
-                        Optional DisablePaper As Boolean, _
-                        Optional DisablePrinter As Boolean, _
-                        Optional LeftMargin As Long, _
-                        Optional MinLeftMargin As Long, _
-                        Optional RightMargin As Long, _
-                        Optional MinRightMargin As Long, _
-                        Optional TopMargin As Long, _
-                        Optional MinTopMargin As Long, _
-                        Optional BottomMargin As Long, _
-                        Optional MinBottomMargin As Long, _
-                        Optional PaperSize As EPaperSize = epsLetter, _
-                        Optional Orientation As EOrientation = eoPortrait, _
-                        Optional PrintQuality As EPrintQuality = epqDraft, _
-                        Optional Units As EPageSetupUnits = epsuInches, _
-                        Optional Printer As Object, _
-                        Optional flags As Long) As Boolean
-    Dim afFlags As Long, afMask As Long
-        
-    m_lApiReturn = 0
-    m_lExtendedError = 0
-    ' Mask out unwanted bits
-    afMask = Not (PSD_EnablePagePaintHook Or _
-                  PSD_EnablePageSetupHook Or _
-                  PSD_EnablePageSetupTemplate)
-    ' Set TPAGESETUPDLG flags
-    afFlags = (-DisableMargins * PSD_DISABLEMARGINS) Or _
-              (-DisableOrientation * PSD_DISABLEORIENTATION) Or _
-              (-DisablePaper * PSD_DISABLEPAPER) Or _
-              (-DisablePrinter * PSD_DISABLEPRINTER) Or _
-              PSD_MARGINS Or PSD_MINMARGINS And afMask
-    Dim lUnits As Long
-    If Units = epsuInches Then
-        afFlags = afFlags Or PSD_INTHOUSANDTHSOFINCHES
-        lUnits = 1000
-    Else
-        afFlags = afFlags Or PSD_INHUNDREDTHSOFMILLIMETERS
-        lUnits = 100
-    End If
-    
-    Dim psd As TPAGESETUPDLG
-    ' Fill in PRINTDLG structure
-    psd.lStructSize = Len(psd)
-    psd.hWndOwner = Owner
-    psd.rtMargin.TOp = TopMargin * lUnits
-    psd.rtMargin.Left = LeftMargin * lUnits
-    psd.rtMargin.Bottom = BottomMargin * lUnits
-    psd.rtMargin.Right = RightMargin * lUnits
-    psd.rtMinMargin.TOp = MinTopMargin * lUnits
-    psd.rtMinMargin.Left = MinLeftMargin * lUnits
-    psd.rtMinMargin.Bottom = MinBottomMargin * lUnits
-    psd.rtMinMargin.Right = MinRightMargin * lUnits
-    psd.flags = afFlags
-    
-    ' Show Print dialog
-    If PageSetupDlg(psd) Then
-        VBPageSetupDlg = True
-        ' Return dialog values in parameters
-        TopMargin = psd.rtMargin.TOp / lUnits
-        LeftMargin = psd.rtMargin.Left / lUnits
-        BottomMargin = psd.rtMargin.Bottom / lUnits
-        RightMargin = psd.rtMargin.Right / lUnits
-        MinTopMargin = psd.rtMinMargin.TOp / lUnits
-        MinLeftMargin = psd.rtMinMargin.Left / lUnits
-        MinBottomMargin = psd.rtMinMargin.Bottom / lUnits
-        MinRightMargin = psd.rtMinMargin.Right / lUnits
-        
-        ' Get DEVMODE structure from PRINTDLG
-        Dim dvmode As DevMode, pDevMode As Long
-        pDevMode = GlobalLock(psd.hDevMode)
-        CopyMemory dvmode, ByVal pDevMode, Len(dvmode)
-        Call GlobalUnlock(psd.hDevMode)
-        PaperSize = dvmode.dmPaperSize
-        Orientation = dvmode.dmOrientation
-        PrintQuality = dvmode.dmPrintQuality
-        ' Set default printer properties
-        On Error Resume Next
-        If Not (Printer Is Nothing) Then
-            Printer.Copies = dvmode.dmCopies
-            Printer.Orientation = dvmode.dmOrientation
-            Printer.PaperSize = dvmode.dmPaperSize
-            Printer.PrintQuality = dvmode.dmPrintQuality
-        End If
-        On Error GoTo 0
-    End If
-
-End Function
-
-#If fComponent = 0 Then
-Private Sub ErrRaise(e As Long)
-    Dim sText As String, sSource As String
-    If e > 1000 Then
-        sSource = App.EXEName & ".CommonDialog"
-        Err.Raise COMError(e), sSource, sText
-    Else
-        ' Raise standard Visual Basic error
-        sSource = App.EXEName & ".VBError"
-        Err.Raise e, sSource
-    End If
-End Sub
-#End If
-
-
-Private Sub StrToBytes(ab() As Byte, s As String)
-    If IsArrayEmpty(ab) Then
-        ' Assign to empty array
-        ab = StrConv(s, vbFromUnicode)
-    Else
-        Dim cab As Long
-        ' Copy to existing array, padding or truncating if necessary
-        cab = UBound(ab) - LBound(ab) + 1
-        If Len(s) < cab Then s = s & String$(cab - Len(s), 0)
-        'If UnicodeTypeLib Then
-        '    Dim st As String
-        '    st = StrConv(s, vbFromUnicode)
-        '    CopyMemoryStr ab(LBound(ab)), st, cab
-        'Else
-            CopyMemoryStr ab(LBound(ab)), s, cab
-        'End If
-    End If
-End Sub
-
-
-Private Function BytesToStr(ab() As Byte) As String
-    BytesToStr = StrConv(ab, vbUnicode)
-End Function
-
-Private Function COMError(e As Long) As Long
-    COMError = e Or vbObjectError
-End Function
-'
-Private Function IsArrayEmpty(va As Variant) As Boolean
-    Dim v As Variant
-    On Error Resume Next
-    v = va(LBound(va))
-    IsArrayEmpty = (Err <> 0)
-End Function
-
-
-

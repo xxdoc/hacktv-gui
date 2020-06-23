@@ -1,5 +1,5 @@
-MainForm = 83, 16, 1073, 535, , 15, 34, 937, 616, C
-mCommonDialog = 37, 105, 1123, 482, C
+MainForm = 214, 198, 1204, 717, , 24, 14, 946, 645, C
+mCommonDialog = 19, 109, 1105, 486, C
 mBrowseForFolder = 30, 59, 1116, 436, C
 SettingsForm = 102, 79, 1099, 514, C, 58, 99, 1055, 534, C
 mLuhnCheck = 71, 95, 1068, 530, C
